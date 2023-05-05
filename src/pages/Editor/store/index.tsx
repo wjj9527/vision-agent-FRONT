@@ -10,7 +10,6 @@ export const StoreContext = createContext<any>({});
 const reducer = (state:any, action:any) => {
   //在reducer中需要对事件进行判断来达到不同的state更新
   const {type} = action
-  // @ts-ignore
   actions[type](state,action)
   return {...state}
 }

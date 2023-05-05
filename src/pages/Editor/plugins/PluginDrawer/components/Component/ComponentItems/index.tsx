@@ -1,13 +1,13 @@
-import config from './config';
+import {plugin} from '@/pages/Editor/material';
 import { Input, Card } from 'antd';
 const { Search } = Input;
 import Item from './Item';
 import { useState } from 'react';
 
 export default () => {
-  const [configState,setConfigState] = useState(config)
+  const [configState,setConfigState] = useState(plugin)
   const handleOnSearch = (text:string)=>{
-    const configList = JSON.parse(JSON.stringify(config))
+    const configList = JSON.parse(JSON.stringify(plugin))
 
     let stateList: { label: string; value: string; items: { label: string; value: string; searchEKEY: string; icon: string; }[]; }[] = []
     configList.forEach((item: { items: any; label?: string; value?: string; })=>{
@@ -18,6 +18,7 @@ export default () => {
       // @ts-ignore
       !!blockItems.length&&stateList.push(item)
     })
+    // @ts-ignore
     setConfigState(stateList)
   }
   return <div className='drawer-container-box'>

@@ -3,14 +3,16 @@ import React, { ReactNode } from 'react';
 interface IProps {
   children:ReactNode,
   className?:string,
-  value:string
+  value:string,
+  label:string,
+  component:Function,
 }
 const Item:React.FC<IProps>=(props)=>{
-  const {className,children,value} = props
+  const {className,children,value,label,component} = props
   console.log(props)
   const [{isDragging},ref] = useDrag(()=>({
     type:'BOX',
-    item:{title:'test1',value,type:'wrapper'},
+    item:{title:label,value,type:'container',component},
     collect:(monitor)=>({
       isDragging:monitor.isDragging()
     })

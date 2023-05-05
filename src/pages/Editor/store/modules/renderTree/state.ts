@@ -3,86 +3,9 @@ export default {
     label:'页面',
     type:'page',
     id:'0',
-    data:null,
+    data:{},
     children:[
-      {
-        label:'容器',
-        type:'container',
-        id:'0-0',
-        data:null,
-        children:[
-          {
-            label:'容器',
-            type:'component',
-            id:'0-0-1',
-            data:null,
-            children:[
 
-            ]
-          },
-          {
-            label:'页面',
-            type:'component',
-            id:'0-0-2',
-            data:null,
-            children:[
-
-            ]
-          },
-        ]
-      },
-      {
-        label:'容器',
-        type:'container',
-        id:'0-1',
-        data:null,
-        children:[
-          {
-            label:'页面',
-            type:'component',
-            id:'0-1-0',
-            data:null,
-            children:[
-
-            ]
-          },
-          {
-            label:'页面',
-            type:'component',
-            id:'0-1-1',
-            data:null,
-            children:[
-
-            ]
-          },
-          {
-            label:'页面',
-            type:'component',
-            id:'0-1-2',
-            data:null,
-            children:[
-
-            ]
-          },
-        ]
-      },
-      {
-        label:'容器',
-        type:'container',
-        id:'0-2',
-        data:null,
-        children:[
-          {
-            label:'页面',
-            type:'component',
-            id:'0-2-0',
-            data:null,
-            children:[
-
-            ]
-          },
-        ]
-      },
     ]
   },
   targetElementCheckedKey:'',
