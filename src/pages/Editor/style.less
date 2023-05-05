@@ -1,0 +1,27 @@
+.editor-content{
+  display: flex;
+  flex-direction: column;
+  //padding-top: 12px;
+  .top-bar{
+    height: 44px;
+    border-bottom: 1px solid #dddddd;
+  }
+  .editor-container-inner{
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    .plugin-bar{
+      min-width: 44px;
+    }
+    .page-render-content{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: @paddingMD;
+    }
+    .setting-content{
+      width: 360px;
+      background: #389e0d;
+    }
+  }
+}

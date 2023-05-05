@@ -1,0 +1,30 @@
+@import "../../../../styles/global";
+.left-bar-content{
+  border-right: 1px solid #dddddd;
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 40px;
+  .left-bar-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .left-bar-item{
+      width: 44px;
+      height: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .iconfont{
+        color: @colorTextSecondary;
+        font-size: @fontSizeHeading4;
+      }
+      &:hover,&.active{
+        .iconfont {
+          color: @colorPrimaryTextHover;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+.plugin-drawer{
+  height: 100%;
+  overflow: hidden;
+}
+.plugin-drawer-content{
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: 100%;
+  background: rgba(245,245,245);
+  border-right: 1px solid #dddddd;
+  &.fixed{
+    position:fixed ;
+    &::before{
+      content:'';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      box-shadow:9px -10px 18px 0px #dddddd ;
+    }
+  }
+  .plugin-drawer-box{
+    flex: 0 0 calc(100% - 44px);
+    overflow: hidden;
+  }
+  .plugin-drawer-title{
+    display: flex;
+    justify-content: space-between;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 @paddingXS 0 @paddingMD;
+    border-bottom: 1px solid #dddddd;
+    .title-text{
+      color: @colorText;
+    }
+    .handle-group{
+      display: flex;
+      .btn{
+        width: 24px;
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
+        margin-left: @marginXXS;
+        &:hover{
+          color: @colorPrimaryActive;
+        }
+        &:first-child{
+          .iconfont{
+            font-size: 18px;
+          }
+        }
+        .iconfont{
+          font-size: 22px;
+        }
+      }
+
+    }
+  }
+}
+
+.ant-tree-treenode{
+  width: 100% !important;
+}
+.ant-tree-node-content-wrapper {
+  flex: 1 !important;
+}
