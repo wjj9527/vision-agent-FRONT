@@ -7,7 +7,7 @@ import './style.less'
 
 export default   () => {
   const context = useContext(StoreContext)
-  console.log(context.state.renderTree.schema)
+  // console.log(context.state.renderTree.schema)
   const [items, setItems] = useState<any>([
 
   ]);

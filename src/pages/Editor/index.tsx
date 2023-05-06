@@ -2,6 +2,7 @@ import './style.less'
 import LeftBar from './plugins/LeftBar'
 import PluginDrawer from './plugins/PluginDrawer'
 import PreviewBody from './PreviewBody'
+import SettingContainer from '@/pages/Editor/plugins/Setting';
 import {Store} from './store'
 import {DndProvider,useDrag,useDrop} from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
@@ -29,7 +30,7 @@ export default ()=> {
             </div>
             {/*组件以及容器setting*/}
             <div className='setting-content'>
-
+              <SettingContainer/>
             </div>
           </div>
         </div>

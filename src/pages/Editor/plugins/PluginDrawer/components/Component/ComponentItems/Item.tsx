@@ -9,7 +9,7 @@ interface IProps {
 }
 const Item:React.FC<IProps>=(props)=>{
   const {className,children,value,label,component} = props
-  console.log(props)
+  // console.log(props)
   const [{isDragging},ref] = useDrag(()=>({
     type:'BOX',
     item:{title:label,value,type:'container',component},

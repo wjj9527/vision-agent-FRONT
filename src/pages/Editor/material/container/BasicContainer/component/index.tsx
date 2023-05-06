@@ -1,7 +1,11 @@
-import { useDrag, useDrop } from 'react-dnd';
-import React,{ReactNode} from 'react';
-import ItemTypes from '@/pages/Editor/container/ItemTypes';
+// import { useDrag, useDrop } from 'react-dnd';
+import React, { ReactNode, useContext } from 'react';
+import classNames from 'classnames';
 import './style.less'
+
+import './style.less'
+import { StoreContext,TYPES } from '@/pages/Editor/store';
+// import { createUUID } from '@/pages/utils';
 interface DraggableAndDroppableProps {
   id: number | string ,
   children?: ReactNode[],
@@ -16,41 +20,17 @@ const EmptyFill =()=>{
   </div>
 }
 
-const DraggableAndDroppable = ({ id, children, className }: DraggableAndDroppableProps) => {
-  //可拖动
-  const [{ isDragging }, drag] = useDrag({
-    type: ItemTypes.BOX,
-    item: { id },
-
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-  //可包裹
-  const [{ isOver }, drop] = useDrop({
-    accept: ItemTypes.BOX,
-    // @ts-ignore
-    drop: (item) => {
-      console.log(id)
-    },
-    hover:(props,monitor)=>{
-      const isDragging = monitor.isOver({ shallow: true });
-
-    },
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-    }),
-  });
-
-  const onTargetChecked = (event: any) => {
-    event.stopPropagation();
-  };
-  const classNames = `${className} dnd-container ${isDragging?'is-dragging':''} ${isOver?'is-over':''}`
-
+const DraggableAndDroppable = ({ id, children, className='' }: DraggableAndDroppableProps) => {
+  const {state,dispatch} = useContext(StoreContext)
+  console.log(id)
+  // const classNames = `basic-container ${}`
+  const classNameList = classNames('basic-container',{
+    'active':state.renderTree.targetElementCheckedKey === id,
+  })
+  console.log(state.renderTree.targetElementCheckedKey)
   return (
-    <div ref={(node) => drag(drop(node))}  onClick={onTargetChecked} className={classNames}>
-      {id}
-      {!!children?.length?children:<EmptyFill/>}
+    <div className={classNameList} onClick={dispatch.bind(this,{type:TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY,value:id})}>
+      {<EmptyFill/>}
     </div>
   );
 };

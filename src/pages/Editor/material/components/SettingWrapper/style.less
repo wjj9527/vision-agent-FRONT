@@ -1,0 +1,37 @@
+.setting-box{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .toggle-group{
+    height: 44px;
+    display: flex;
+    //margin-bottom: 14px;
+    padding: 0 @paddingSM;
+    box-shadow: 0px 5px 11px 1px #f2f4f7;
+    border-bottom: 1px solid #f2f4f7  ;
+    .toggle-item{
+      flex: 1;
+      text-align: center;
+      line-height: 44px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: .3s ease all;
+
+      &:hover{
+        color: @colorPrimary;
+      }
+      &.active{
+        color: @colorPrimary;
+        border-bottom: 2px solid  @colorPrimary;
+      }
+    }
+  }
+  .view-content{
+    height: calc(100% - 44px);
+    flex: 1;
+    overflow: auto;
+    .view-scroll-inner{
+      padding: @paddingSM;
+    }
+  }
+}
