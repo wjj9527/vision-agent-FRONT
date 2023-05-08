@@ -27,10 +27,10 @@ export default () => {
     </div>
     <div className='plugin-scroll-container'>
       {
-        configState.map(item => <Card title={item.label}>
+        configState.map(item => <Card title={item.label} key={item.value}>
           <div className='drawer-card-container'>
             {
-              item?.items.map(i => <Item className='drawer-label-item' {...i}>
+              item?.items.map(i => <Item className='drawer-label-item' {...i} key={i.value}>
                   <div>
                     <div className='icon-box'>
                       <div className={`iconfont ${i.icon}`}>

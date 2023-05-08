@@ -7,8 +7,9 @@ interface Container {
 }
 
 
-function findContainerById(id: string, containers: Container[], parent: Container | null = null): { container: {}; parent: null } {
-  console.log(containers)
+export const findContainerById = (id: string, containers: Container[], parent: Container | null = null): { container: {
+    data: {style?:{}};
+  }; parent: null }=> {
   for (const container of containers) {
     // alert(container.id)
     if (container.id === id) {
@@ -23,7 +24,7 @@ function findContainerById(id: string, containers: Container[], parent: Containe
       }
     }
   }
-  return {container:{},parent:null};
+  return {container:{data:{style:{}}},parent:null};
 }
 
 
@@ -44,17 +45,13 @@ export default {
     // @ts-ignore
     const targetIndex = actionList.findIndex(item=>item.id===targetId)
     actionList.splice(targetIndex,0,insertValue)
-    // setTimeout(()=>{
-    //   console.log(state.renderTree)
-    // })
+
   },
   [TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT]:(state:any,action:any)=>{
     const schema = state.renderTree.schema
     const {targetId,pushValue} = action.value
-    console.log(targetId)
-    const {container,parent} = findContainerById(targetId,schema.children,schema)
-
-    console.log(parent)
+    // console.log(targetId)
+    const {parent} = findContainerById(targetId,schema.children,schema)
 
     // @ts-ignore
     const actionList = parent?.children
@@ -66,6 +63,10 @@ export default {
         actionItem.children = [pushValue]
       }
     }
-
+  },
+  [TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID]:(state:any,action:any)=>{
+    const schema = state.renderTree.schema
+    let {container} = findContainerById(action.id,schema.children,schema)
+    Object.assign(container.data,action.data)
   }
 }
