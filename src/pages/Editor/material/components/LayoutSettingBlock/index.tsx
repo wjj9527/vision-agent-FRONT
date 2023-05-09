@@ -55,13 +55,13 @@ const LayoutSettingBlock: React.FC = () => {
     elementData = findContainerById(currentTargetId,state.renderTree.schema.children,state.renderTree.schema).container?.data?.style||{}
     // console.log(elementData)
     setDefaultValue(elementData)
-    console.log(defaultValue)
+    // console.log(defaultValue)
   },[currentTargetId])
 
   const setSchemaData = (e:string,type:keyof typeof style)=>{
 
     let props = {...defaultValue}
-    console.log(props)
+    // console.log(props)
 
     props[type] = e
 

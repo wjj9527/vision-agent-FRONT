@@ -34,7 +34,7 @@ const DraggableAndDroppable = ({ id, children, onMove, className }: DraggableAnd
     hover:(props,monitor)=>{
       const isDragging = monitor.isOver({ shallow: true });
       if (isDragging) {
-        console.log(id)
+        // console.log(id)
       }
     },
     collect: (monitor) => ({

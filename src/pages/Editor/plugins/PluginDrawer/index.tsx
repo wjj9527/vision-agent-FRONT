@@ -36,7 +36,7 @@ export default function():(false | JSX.Element|any){
   const handleFixed =()=>{
     // pluginDrawerFixed
     dispatch({type: TYPES.UPDATE_PLUGIN_DRAWER_FIXED, value: !pluginDrawerFixed })
-    console.log(pluginDrawerFixed)
+    // console.log(pluginDrawerFixed)
   }
   const FixedBtn = ()=>{
     return (

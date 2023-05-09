@@ -25,8 +25,8 @@ const DraggableAndDroppable = ({ id, type='element',children, className }: Dragg
     accept: ItemTypes.BOX,
     // @ts-ignore
     drop: (item) => {
-      console.log(id,'自身id')
-      console.log(item,'拖入')
+      // console.log(id,'自身id')
+      // console.log(item,'拖入')
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),

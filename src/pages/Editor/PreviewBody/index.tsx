@@ -13,7 +13,7 @@ export default   () => {
   ]);
 
   const moveItem = (item:any, dropId:number|string) => {
-    console.log(item,'inner')
+    // console.log(item,'inner')
     const {type,id} = item
     const dragId = id
     const dragIndex = items.findIndex((item: { id: string | number; }) => item.id === dragId);
@@ -38,7 +38,7 @@ export default   () => {
     if (type === 'wrapper') {
       const id:string = createUUID()
       setItems([...items,{id,content:null}])
-      console.log(item,'wrapper')
+      // console.log(item,'wrapper')
     }
 
   }

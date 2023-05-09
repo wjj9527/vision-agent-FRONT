@@ -22,12 +22,12 @@ const EmptyFill =()=>{
 
 const DraggableAndDroppable = ({ id, children, className='' }: DraggableAndDroppableProps) => {
   const {state,dispatch} = useContext(StoreContext)
-  console.log(id)
+  // console.log(id)
   // const classNames = `basic-container ${}`
   const classNameList = classNames('basic-container',{
     'active':state.renderTree.targetElementCheckedKey === id,
   })
-  console.log(state.renderTree.targetElementCheckedKey)
+  // console.log(state.renderTree.targetElementCheckedKey)
   return (
     <div className={classNameList} onClick={dispatch.bind(this,{type:TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY,value:id})}>
       {<EmptyFill/>}

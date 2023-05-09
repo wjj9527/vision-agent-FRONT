@@ -46,7 +46,7 @@ export default () => {
   const handleOnSelect:TreeProps['onSelect'] = (node)=>{
     const [value] = node
     dispatch({type:TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY,value})
-    console.log(state)
+    // console.log(state)
   }
 
   // @ts-ignore

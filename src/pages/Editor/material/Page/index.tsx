@@ -100,7 +100,7 @@ const Page: React.FC= () => {
   };
   const handleOnMove = (event:any)=>{
     // event.preventDefault()
-    console.log('page')
+    // console.log('page')
   }
   const classNames = `preview-body dnd-container ${isOver ? 'is-over' : ''}`;
 
