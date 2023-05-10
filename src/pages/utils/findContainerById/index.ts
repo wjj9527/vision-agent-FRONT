@@ -1,24 +1,41 @@
+interface DataType {
+  style?:{}
+}
 export interface Container {
   label: string;
+  type: string;
   id: string;
-  children?: Container[];
+  data:DataType
+  children?: (Container | BasicContainer)[];
 }
-export const findContainerById = (id: string, containers: Container[], parent: Container | null = null): { container: {
-    data: {style?:{}};
-  }; parent: null }=> {
-  for (const container of containers) {
-    // alert(container.id)
-    if (container.id === id) {
-      //@ts-ignore
-      return { container, parent };
-    }
-    if (container.children) {
-      const result = findContainerById(id, container.children, container);
 
-      if (result) {
-        return result;
+export interface BasicContainer extends Container {
+  value: string;
+}
+interface ContainerProps {
+  element:Container|BasicContainer|null,
+  parent:Container|null
+}
+export const findContainerById=(
+  id: string,
+  obj: Container,
+): ContainerProps =>{
+  if (obj.id === id) {
+    return { element: obj, parent: null };
+  }
+  if (obj.children) {
+    for (let i = 0; i < obj.children.length; i++) {
+      const child = obj.children[i];
+      if (child.id === id) {
+        return { element: child, parent: obj };
+      } else {
+        const result = findContainerById(id,child, );
+        if (result.element !== null) {
+          return result;
+        }
       }
     }
   }
-  return {container:{data:{style:{}}},parent:null};
+  return { element: null, parent: null };
 }
+

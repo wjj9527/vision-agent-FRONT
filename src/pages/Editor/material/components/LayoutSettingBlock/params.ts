@@ -76,7 +76,7 @@ export const flexDirectionOptions:SelectOption[] = [
     value:'column'
   },
   {
-    label:'水平靠下',
+    label:'垂直靠下',
     value:'column-reverse'
   },
 ]

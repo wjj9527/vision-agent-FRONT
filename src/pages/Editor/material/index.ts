@@ -6,7 +6,7 @@ const setting = {
 }
 
 const component = {
-  BasicContainer:BasicContainer.component
+  container:BasicContainer.component
 }
 
 const plugin = [

@@ -1,4 +1,5 @@
-function generateUUID(): string {
+
+const createUUID =()=>{
   let uuid = '';
   const chars = 'abcdefghjklmnpqrstuvwxyz0123456789';
   for (let i = 0; i < 36; i++) {
@@ -13,4 +14,4 @@ function generateUUID(): string {
   return uuid;
 }
 
-export default generateUUID
+export default createUUID

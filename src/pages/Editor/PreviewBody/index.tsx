@@ -55,7 +55,7 @@ export default   () => {
   // // return renderTreeDom
 
   return (
-    <Page className={'preview-body'}>
+    <Page >
       {/*{items.map((item: { id: number|string; content: React.ReactNode[] | undefined; }) => (*/}
       {/*  <Page key={item.id} id={item.id} type={'BOX'} onMove={moveItem}>*/}
       {/*    {item.content}*/}

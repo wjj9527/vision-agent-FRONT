@@ -1,0 +1,43 @@
+.badge-body{
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  .badge-content{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 22px;
+    padding: @paddingXXS;
+    background-color: @colorPrimary;
+  }
+  &:hover{
+    border: 2px solid @colorPrimary;
+    .badge-content{
+      display: none;
+    }
+  }
+  &.active{
+    border: 2px solid @colorPrimary;
+    >.badge-content{
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-bottom-left-radius: 4px;
+      .label{
+        font-size: 12px;
+        color: @colorBgElevated; ;
+        padding: 0 @paddingXS;
+      }
+      .handle-group{
+        display: flex;
+        font-size: 12px;
+        color: @colorBgElevated;
+        .handle-item{
+          padding: 0 @paddingXXS;
+        }
+
+      }
+    }
+  }
+}

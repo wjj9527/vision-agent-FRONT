@@ -1,17 +1,21 @@
 // import { useDrag, useDrop } from 'react-dnd';
 import React, { ReactNode, useContext } from 'react';
-import classNames from 'classnames';
-import './style.less'
 
 import './style.less'
 import { StoreContext,TYPES } from '@/pages/Editor/store';
-// import { createUUID } from '@/pages/utils';
+
+import ElementBody from '@/pages/Editor/material/components/ElementBody';
+interface DataType {
+  style:object
+}
 interface DraggableAndDroppableProps {
   id: number | string ,
   children?: ReactNode[],
   type: string,
+  label:string,
   onMove?: Function | null | undefined,
   className?: string,
+  data:DataType
 }
 
 const EmptyFill =()=>{
@@ -20,19 +24,26 @@ const EmptyFill =()=>{
   </div>
 }
 
-const DraggableAndDroppable = ({ id, children, className='' }: DraggableAndDroppableProps) => {
-  const {state,dispatch} = useContext(StoreContext)
-  // console.log(id)
-  // const classNames = `basic-container ${}`
-  const classNameList = classNames('basic-container',{
+
+
+const DraggableAndDroppable = (props: DraggableAndDroppableProps) => {
+
+  const {state,} = useContext(StoreContext)
+  const {id,children,data,label} = props
+  const {style} = data
+
+  const classNameList = {
+    'basic-container':true,
     'active':state.renderTree.targetElementCheckedKey === id,
-  })
-  // console.log(state.renderTree.targetElementCheckedKey)
+  }
+
   return (
-    <div className={classNameList} onClick={dispatch.bind(this,{type:TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY,value:id})}>
-      {<EmptyFill/>}
-    </div>
+    <ElementBody className={classNameList} style={style} id={id} label={label}>
+      {/*@ts-ignore*/}
+      {children.props.children?.length?children:<EmptyFill/>}
+    </ElementBody>
+
   );
-};
+}
 
 export default DraggableAndDroppable;
