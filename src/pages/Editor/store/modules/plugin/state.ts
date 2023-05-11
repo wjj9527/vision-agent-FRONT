@@ -1,5 +1,6 @@
 export default {
   pluginCurrentTarget:'component',
   pluginDrawerVisible:true,
-  pluginDrawerFixed:false
+  pluginDrawerFixed:false,
+  pluginSettingFold:true,
 }

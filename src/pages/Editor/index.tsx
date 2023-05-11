@@ -1,37 +1,40 @@
-import './style.less'
-import LeftBar from './plugins/LeftBar'
-import PluginDrawer from './plugins/PluginDrawer'
-import PreviewBody from './PreviewBody'
+import './style.less';
+import LeftBar from './plugins/LeftBar';
+import PluginDrawer from './plugins/PluginDrawer';
+import PreviewBody from './PreviewBody';
 import SettingContainer from '@/pages/Editor/plugins/Setting';
-import {Store} from './store'
-import {DndProvider,useDrag,useDrop} from 'react-dnd'
-import {HTML5Backend} from 'react-dnd-html5-backend'
+import TopBtnGroup from '@/pages/Editor/plugins/TopBtnGroup';
+import { Store,} from './store';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-export default ()=> {
+
+export default () => {
   return (
     <Store>
       <DndProvider backend={HTML5Backend}>
-        <div className="page-wrapper editor-content">
+        <div className='page-wrapper editor-content'>
           {/*头部控制栏*/}
           <div className='top-bar'>
-
+            <TopBtnGroup />
           </div>
           <div className='editor-container-inner'>
             {/*左侧插件栏*/}
             <div className='plugin-bar'>
-              <LeftBar/>
+              <LeftBar />
             </div>
             <div className='plugin-drawer'>
-              <PluginDrawer/>
+              <PluginDrawer />
             </div>
             {/*页面主体*/}
             <div className='page-render-content'>
-              <PreviewBody/>
+              <PreviewBody />
             </div>
             {/*组件以及容器setting*/}
             <div className='setting-content'>
-              <SettingContainer/>
+              <SettingContainer />
             </div>
+
           </div>
         </div>
       </DndProvider>
