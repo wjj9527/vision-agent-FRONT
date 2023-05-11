@@ -39,6 +39,19 @@ export default () => {
                     </div>
                     <div className='label'>{i.label}</div>
                   </div>
+                </Item>
+              )
+            }
+            {
+              item?.items.map(i => <Item className='drawer-label-item' {...i} key={i.value}>
+                  <div>
+                    <div className='icon-box'>
+                      <div className={`iconfont ${i.icon}`}>
+
+                      </div>
+                    </div>
+                    <div className='label'>{i.label}</div>
+                  </div>
                 </Item>,
               )
             }

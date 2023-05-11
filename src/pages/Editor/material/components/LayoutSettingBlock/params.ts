@@ -42,10 +42,6 @@ export const style:Style = {
 }
 export const displayOptions:SelectOption[] = [
   {
-    label:'内联布局',
-    value:'inline'
-  },
-  {
     label:'弹性布局',
     value:'flex'
   },

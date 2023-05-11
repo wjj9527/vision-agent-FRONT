@@ -70,7 +70,6 @@ export default {
     const schema = state.renderTree.schema
     const {id,callback} = action
     const {parent,element} = findContainerById(id,schema)
-    console.log(JSON.stringify(findContainerById(id,schema).element))
     const replaceObjectIds =(obj:any)=> {
       const newObj: Container = { ...obj };
       newObj.id = createUUID();
@@ -86,6 +85,31 @@ export default {
         parent?.children?.splice(insertIndex,0,newElement)
         callback(true)
       }
+    }
+  },
+  [TYPES.RENDER_TREE_UPDATE_ELEMENT_LABEL_BY_ID]:(state:any,action:any)=>{
+    const schema = state.renderTree.schema
+    const {id,callback,label} = action
+    const {element} = findContainerById(id,schema)
+    if (element) {
+      element.label = label
+      callback&&callback()
+    }
+  },
+  [TYPES.RENDER_TREE_INSERT_TO_ELEMENT_BY_ID]:(state:any,action:any)=>{
+    const schema = state.renderTree.schema
+    const {insertId,containerId,} = action
+    const {element,parent} = findContainerById(insertId,schema)
+    console.log(element,parent)
+    if (element) {
+      const list = parent?.children
+      const insetIndex = list?.findIndex(item=>item.id===insertId)
+      // @ts-ignore
+      const [insertData] = (insetIndex!==-1)?list?.splice(insetIndex,1):{}
+      const containerIndex = list?.findIndex(item=>item.id===containerId)
+      // @ts-ignore
+      list?.splice(containerIndex+1,0,insertData)
+      console.log(parent)
     }
   }
 }

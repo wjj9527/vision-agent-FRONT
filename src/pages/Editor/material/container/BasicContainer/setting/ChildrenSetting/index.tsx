@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useReducer, useRef, useState } from 'react';
 import { Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import Item from './Item';
@@ -7,15 +7,18 @@ import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { createUUID } from '@/pages/utils';
 import { findContainerById } from '@/pages/utils/findContainerById';
 
+
 const ChildrenSetting: React.FC = () => {
   const { state, dispatch } = useContext(StoreContext);
   const targetId = state.renderTree.targetElementCheckedKey;
+  const pluginSettingChildItemIsCanMoveStatus = state.plugin.pluginSettingChildItemIsCanMoveStatus
   const schema = state.renderTree.schema;
   const { element } = findContainerById(targetId, schema);
-
+  const scrollContainerRef = useRef(null)
   //当前容器新增子集
   const appendChildContainer = () => {
     const uuid = createUUID();
+
     dispatch(
       {
         type: TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT,
@@ -49,9 +52,21 @@ const ChildrenSetting: React.FC = () => {
           },
         },
       });
+    setTimeout(()=>{
+      // @ts-ignore
+      scrollContainerRef?.current?.lastChild?.scrollIntoView({ behavior: "smooth" })
+    })
   };
   const appendChildElement = ()=>{
 
+  }
+  const handleMoveActive = ()=>{
+    dispatch({type:TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_COLLAPSE,value:true})
+    dispatch({type:TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_IS_CAN_MOVE_STATUS,value:true})
+  }
+  const handleMoveCancel =()=>{
+    dispatch({type:TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_COLLAPSE,value:false})
+    dispatch({type:TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_IS_CAN_MOVE_STATUS,value:false})
   }
   const menuItems: MenuProps['items'] = [{
     key: 'container',
@@ -62,15 +77,22 @@ const ChildrenSetting: React.FC = () => {
   }];
   return <div className='children-setting'>
     <div className='btn-group'>
-      <Dropdown menu={{items:menuItems}}>
-        <Button type='primary' className='btn'>新增</Button>
+      <Dropdown menu={{items:menuItems}} disabled={pluginSettingChildItemIsCanMoveStatus}>
+        <Button type='primary' className='btn' >新增</Button>
       </Dropdown>
-      <Button type='primary' className='btn' ghost>排列</Button>
+      {/*<Button type='primary' className='btn' onClick={handleMoveActive} ghost>排列</Button>*/}
+      {
+        !pluginSettingChildItemIsCanMoveStatus?(
+          <Button type='primary' className='btn' onClick={handleMoveActive} ghost>排列</Button>
+        ):(
+          <Button type='primary' className='btn' onClick={handleMoveCancel} ghost>取消排列</Button>
+        )
+      }
     </div>
     <div className='children-setting-scroll-content'>
-      <div className='children-setting-scroll-inner-view'>
+      <div className='children-setting-scroll-inner-view' ref={scrollContainerRef}>
         {/*@ts-ignore*/}
-        {element?.children?.map((item: any) => <Item item={item} key={item.key} />)}
+        {element?.children?.map((item: any) => <Item item={item} key={item.id}/>)}
       </div>
     </div>
   </div>;

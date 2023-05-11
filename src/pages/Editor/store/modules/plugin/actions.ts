@@ -12,5 +12,11 @@ export default {
   },
   [TYPES.UPDATE_PLUGIN_SETTING_FOLD]:(state:any,action:any)=>{
     state.plugin.pluginSettingFold = action.value
+  },
+  [TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_COLLAPSE]:(state:any,action:any)=>{
+    state.plugin.pluginSettingChildItemCollapse = action.value
+  },
+  [TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_IS_CAN_MOVE_STATUS]:(state:any,action:any)=>{
+    state.plugin.pluginSettingChildItemIsCanMoveStatus = action.value
   }
 }

@@ -27,11 +27,15 @@
   .children-setting-item{
     border: 1px solid #dddddd;
     margin-bottom: @marginXS;
-    padding: 0 0 @paddingSM 0;
+    //padding: 0 0 @paddingSM 0;
     border-radius: 4px;
     overflow: hidden;
     .item-content{
       padding: @paddingSM;
+      overflow: hidden;
+      &.is-collapse{
+        display: none;
+      }
     }
     .item-title{
       display: flex;
@@ -41,6 +45,31 @@
       box-sizing: border-box;
       font-size: 12px;
       align-items: center;
+      .title-text{
+        display: flex;
+        .text{
+          display: flex;
+          align-items: center;
+          min-width: 44px;
+          //background-color: #69b1ff;
+        }
+        .title-input{
+          display: inline-block;
+          min-width:84px;
+          width: 0;
+          padding: @paddingXXS;
+        }
+        .edit-btn{
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          width: 32px;
+          margin-left: @marginXXS;
+          &:hover{
+            color: @colorPrimary;
+          }
+        }
+      }
       .handle{
         flex: 1;
         display: flex;
@@ -51,6 +80,22 @@
           font-size: 12px;
         }
       }
+      .collapse-btn{
+        display: flex;
+        align-items: center;
+        margin-left: @marginXS;
+        cursor: pointer;
+      }
     }
+  }
+  .is-dragging{
+    display: none;
+  }
+  .is-over{
+    border-bottom: 2px solid @colorPrimary;
+  }
+  .children-setting-scroll-inner-view{
+    display: flex;
+    flex-direction: column;
   }
 }

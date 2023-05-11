@@ -3,4 +3,6 @@ export default {
   pluginDrawerVisible:true,
   pluginDrawerFixed:false,
   pluginSettingFold:true,
+  pluginSettingChildItemCollapse:false,
+  pluginSettingChildItemIsCanMoveStatus:false,
 }
