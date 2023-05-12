@@ -38,7 +38,6 @@ const Item: React.FC<IProps> = ({ item ,}) => {
   }, [editStatus]);
   useEffect(()=>{
     setCollapseStatus(pluginSettingChildItemCollapse)
-    console.log(collapseStatus)
   },[pluginSettingChildItemCollapse])
   const handleDelete = () => {
     const { id } = item;

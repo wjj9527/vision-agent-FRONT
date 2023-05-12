@@ -1,5 +1,6 @@
 //基础容器
 import BasicContainer from './container/BasicContainer'
+import React, { ReactNode } from 'react';
 
 const setting = {
   BasicContainer:BasicContainer.setting
@@ -8,8 +9,19 @@ const setting = {
 const component = {
   container:BasicContainer.component
 }
-
-const plugin = [
+interface pluginItemType {
+  label:string,
+  value:string,
+  searchEKEY:string,
+  icon?:string,
+  component?:React.FC|any
+}
+interface pluginType{
+  label:string,
+  value:string,
+  items:pluginItemType[]
+}
+const plugin:pluginType[] = [
   {
     label:'容器',
     value:'container',
@@ -28,5 +40,7 @@ const plugin = [
 export {
   setting,
   component,
-  plugin
+  plugin,
+  pluginItemType,
+  pluginType
 }

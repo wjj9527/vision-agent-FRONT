@@ -18,5 +18,8 @@ export default {
   },
   [TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_IS_CAN_MOVE_STATUS]:(state:any,action:any)=>{
     state.plugin.pluginSettingChildItemIsCanMoveStatus = action.value
+  },
+  [TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS]:(state:any,action:any)=>{
+    state.pluginDrawerElementSelectionVisible = action.value
   }
 }

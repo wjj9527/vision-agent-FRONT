@@ -1,0 +1,34 @@
+.drawer-inner-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 10000000000;
+  height: calc(100% + 32px);
+  width: calc(100% + 32px);
+  margin: -16px;
+  .drawer-inner-header{
+    height: 44px;
+  }
+  .drawer-inner-content{
+    flex: 1;
+    overflow: auto;
+    background-color: #ffffff;
+  }
+  .drawer-inner-footer{
+    flex: 0 0 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #dddddd;
+    .a-btn{
+      margin-right: @marginLG;
+    }
+  }
+}
+.btn-text{
+  width: 96px;
+  font-size: 12px;
+}
+.ant-drawer{
+  z-index: 10000 !important;
+}

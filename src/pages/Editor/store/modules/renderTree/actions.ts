@@ -1,6 +1,6 @@
 import TYPES from './types';
 
-import { findContainerById,Container,BasicContainer } from '@/pages/utils/findContainerById';
+import { findContainerById,Container } from '@/pages/utils/findContainerById';
 
 import createUUID from '@/pages/utils/UUID';
 
@@ -100,7 +100,6 @@ export default {
     const schema = state.renderTree.schema
     const {insertId,containerId,} = action
     const {element,parent} = findContainerById(insertId,schema)
-    console.log(element,parent)
     if (element) {
       const list = parent?.children
       const insetIndex = list?.findIndex(item=>item.id===insertId)

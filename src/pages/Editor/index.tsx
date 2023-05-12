@@ -4,8 +4,9 @@ import PluginDrawer from './plugins/PluginDrawer';
 import PreviewBody from './PreviewBody';
 import SettingContainer from '@/pages/Editor/plugins/Setting';
 import TopBtnGroup from '@/pages/Editor/plugins/TopBtnGroup';
+import ElementSelection from '@/pages/Editor/material/drawer/ElementSelection'
 import { Store,} from './store';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { DndProvider,} from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
@@ -34,7 +35,7 @@ export default () => {
             <div className='setting-content'>
               <SettingContainer />
             </div>
-
+            <ElementSelection/>
           </div>
         </div>
       </DndProvider>

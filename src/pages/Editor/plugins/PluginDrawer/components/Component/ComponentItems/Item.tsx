@@ -1,11 +1,12 @@
 import {useDrag} from 'react-dnd'
 import React, { ReactNode } from 'react';
+import {pluginType,pluginItemType} from '@/pages/Editor/material';
 interface IProps {
-  children:ReactNode,
+  children:React.ReactChildren|JSX.Element,
   className?:string,
   value:string,
   label:string,
-  component:Function,
+  component:React.FC|any
 }
 const Item:React.FC<IProps>=(props)=>{
   const {className,children,value,label,component} = props

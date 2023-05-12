@@ -26,7 +26,7 @@ const EmptyFill =()=>{
 
 
 
-const DraggableAndDroppable = (props: DraggableAndDroppableProps) => {
+const DraggableAndDroppable:React.FC<DraggableAndDroppableProps> = (props) => {
 
   const {state,} = useContext(StoreContext)
   const {id,children,data,label} = props
