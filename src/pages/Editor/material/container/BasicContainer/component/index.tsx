@@ -1,8 +1,6 @@
-// import { useDrag, useDrop } from 'react-dnd';
 import React, { ReactNode, useContext } from 'react';
-
 import './style.less'
-import { StoreContext,TYPES } from '@/pages/Editor/store';
+
 
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
 interface DataType {
@@ -26,16 +24,14 @@ const EmptyFill =()=>{
 
 
 
-const DraggableAndDroppable:React.FC<DraggableAndDroppableProps> = (props) => {
-
-  const {state,} = useContext(StoreContext)
+const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
   const {id,children,data,label} = props
   const {style} = data
 
   const classNameList = {
     'basic-container':true,
-    'active':state.renderTree.targetElementCheckedKey === id,
   }
+  console.log(children)
 
   return (
     <ElementBody className={classNameList} style={style} id={id} label={label}>
@@ -46,4 +42,4 @@ const DraggableAndDroppable:React.FC<DraggableAndDroppableProps> = (props) => {
   );
 }
 
-export default DraggableAndDroppable;
+export default BasicContainer;

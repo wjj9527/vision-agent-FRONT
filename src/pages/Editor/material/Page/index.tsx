@@ -6,7 +6,7 @@ import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { createUUID } from '@/pages/utils';
 import { component } from '../index';
 
-
+console.log(component)
 interface TreeProps {
   label: string,
   type: 'page' | 'container' | 'component',
@@ -20,8 +20,9 @@ const renderTreeAction: React.FC<TreeProps> = (tree) => {
   let context = null;
   if (tree?.children) {
     context = tree?.children?.map(item=>{
+      // console.log(item.value)
       // @ts-ignore
-      const Wrapper = component[item.type]||(()=><></>)
+      const Wrapper = component[item.value]||(()=><></>)
       return <Wrapper key={item.id} {...item}>{tree.children?renderTreeAction(item):null}</Wrapper>
     })
   }
@@ -35,7 +36,8 @@ const Page: React.FC = () => {
     accept: ItemTypes.BOX,
     drop: (item: any, monitor) => {
       const { title, type, value } = item;
-      if (type === 'container') {
+      console.log(value)
+      if (true) {
         const id = createUUID();
         dispatch({
           type: TYPES.RENDER_TREE_CREATE_PAGE_ROOT_ELEMENT,

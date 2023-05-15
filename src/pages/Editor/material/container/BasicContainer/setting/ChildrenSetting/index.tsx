@@ -27,6 +27,7 @@ const ChildrenSetting: React.FC = () => {
           pushValue: {
             label: '子容器',
             type: 'container',
+            value:'BasicContainer',
             id: uuid,
             data: {
               style: {

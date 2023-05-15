@@ -8,7 +8,6 @@ export default () => {
   const [configState,setConfigState] = useState(plugin)
   const handleOnSearch = (text:string)=>{
     const configList = JSON.parse(JSON.stringify(plugin))
-
     let stateList:pluginType[] = []
     configList.forEach((item:pluginType)=>{
       const blockItems = item.items.filter((i: pluginItemType)=>{

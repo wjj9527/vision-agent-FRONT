@@ -19,10 +19,14 @@ interface ElementBodyProps {
 }
 
 const ElementBody: React.FC<ElementBodyProps> = ({ style, className,label, children, id }) => {
-  let classNamesList = classNames('badge-body', className);
-  const { dispatch } = useContext(StoreContext);
+
+  const { state,dispatch } = useContext(StoreContext);
+  let classNamesList = classNames('badge-body', className,{
+    'active':state.renderTree.targetElementCheckedKey === id,
+  });
   const handleTargetElementSetting = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
+    console.log(id)
     dispatch({ type: TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY, value: id });
   };
   const handleDeleteElement = ()=>{
