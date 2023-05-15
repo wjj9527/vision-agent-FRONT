@@ -1,12 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './style.less'
-import Setting from '@/pages/Editor/material/container/BasicContainer/setting'
+import {setting} from '@/pages/Editor/material'
+import { findContainerById } from '@/pages/utils/findContainerById';
 import { StoreContext } from '@/pages/Editor/store';
 const SettingContainer:React.FC = ()=>{
   const {state,} = useContext(StoreContext)
-  const pluginSettingFold = state.plugin.pluginSettingFold
+  const {pluginSettingFold} = state.plugin
+  const {targetElementCheckedKey,schema} = state.renderTree
+  const [currentElementType,setCurrentElementType] = useState('')
+  useEffect(()=>{
+    const {element} = findContainerById(targetElementCheckedKey,schema)
+    if (element) {
+      //@ts-ignore
+      setCurrentElementType(element.value)
+    }
+  },[targetElementCheckedKey])
+  //获取当前元素类型
+  // @ts-ignore
+  const settingElement = setting[currentElementType]||<></>
   return pluginSettingFold?<div className="setting-container">
-    <Setting/>
+    {settingElement}
   </div>:<></>
 }
 

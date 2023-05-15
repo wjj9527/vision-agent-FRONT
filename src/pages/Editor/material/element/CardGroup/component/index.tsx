@@ -38,7 +38,6 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
       </div>
       <div className='scroll-content' ref={scrollRef}>
         {groupList.map(item=>(<div className='card'>
-          1
         </div>))}
       </div>
       <div className='arrow-btn right' onClick={handleScroll.bind(this,true)}>

@@ -28,7 +28,6 @@ const LayoutSettingBlock: React.FC<LayoutSettingBlockProps> = ({id}) => {
   const currentTargetId = id||state.renderTree.targetElementCheckedKey
   // @ts-ignore
   const currentElement = findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.style||{}
-  // console.log(currentElement,currentTargetId,state.renderTree.schema)
   const [defaultValue,setDefaultValue] = useState<any>(currentElement)
 
   useEffect(()=>{
@@ -36,9 +35,10 @@ const LayoutSettingBlock: React.FC<LayoutSettingBlockProps> = ({id}) => {
     //@ts-ignore
     elementData = findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.style||{}
     setDefaultValue(elementData)
-    console.log(elementData)
-  },[currentTargetId])
-
+  },[])
+  // useEffect(()=>{
+  //   return
+  // },[])
   const setSchemaData = (e:string,type:keyof typeof style)=>{
     let props = {...defaultValue}
     props[type] = e

@@ -5,8 +5,8 @@ import BasicContainer from './container/BasicContainer'
 import CardGroup from './element/CardGroup';
 
 const setting = {
-  BasicContainer:BasicContainer.setting,
-  CardGroup:CardGroup.setting
+  BasicContainer:BasicContainer.Setting,
+  CardGroup:CardGroup.Setting
 }
 
 const component = {

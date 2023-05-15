@@ -1,6 +1,6 @@
 import component from './component'
-import setting from './setting'
+import Setting from './setting'
 export default {
   component,
-  setting
+  Setting:<Setting/>
 }
