@@ -4,7 +4,7 @@ import LayoutSettingBlock from '@/pages/Editor/material/components/LayoutSetting
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import classNames from 'classnames';
 import Dnd from '../Dnd'
-
+const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock} = LayoutSettingBlock
 interface ItemType {
   id: string,
   label: string,
@@ -120,7 +120,9 @@ const Item: React.FC<IProps> = ({ item ,}) => {
       </div>
     </div>
     <div className={contentClassNames}>
-      <LayoutSettingBlock id={id} />
+      <LayoutBlock id={id}/>
+      <MarginAndPaddingBlock id={id}/>
+      <WidthAndHeightBlock id={id}/>
     </div>
   </div>)
   return pluginSettingChildItemIsCanMoveStatus?<Dnd id={id}>

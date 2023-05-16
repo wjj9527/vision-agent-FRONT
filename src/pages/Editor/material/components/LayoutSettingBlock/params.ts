@@ -2,7 +2,13 @@ interface SelectOption{
   label:string;
   value:string
 }
-type Style = {
+export interface Container {
+  label: string;
+  id: string;
+  data?:object,
+  children?: Container[];
+}
+export type Style = {
   display: 'block' | 'inline' | 'inline-block' | 'none' | string;
   flexDirection: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string;
   justifyContent: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | string;
