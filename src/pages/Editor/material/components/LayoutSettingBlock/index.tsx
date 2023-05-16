@@ -35,10 +35,8 @@ const LayoutSettingBlock: React.FC<LayoutSettingBlockProps> = ({id}) => {
     //@ts-ignore
     elementData = findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.style||{}
     setDefaultValue(elementData)
-  },[])
-  // useEffect(()=>{
-  //   return
-  // },[])
+  },[currentTargetId])
+
   const setSchemaData = (e:string,type:keyof typeof style)=>{
     let props = {...defaultValue}
     props[type] = e

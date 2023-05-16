@@ -59,7 +59,8 @@ const ChildrenSetting: React.FC = () => {
     })
   };
   const appendChildElement = ()=>{
-
+    //开启组件抽屉
+    dispatch({type:TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS,value:true})
   }
   const handleMoveActive = ()=>{
     dispatch({type:TYPES.UPDATE_PLUGIN_SETTING_CHILD_ITEM_COLLAPSE,value:true})

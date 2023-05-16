@@ -17,3 +17,15 @@ export type StyleType = {
   widthPrefix: 'px' | 'em' | '%' | string;
   heightPrefix: 'px' | 'em' | '%' | string;
 };
+
+export type ElementType = {
+  label:string,
+  type:string|undefined|null,
+  value:string,
+  id:string,
+  data:{
+    style?:StyleType,
+    data?:any,
+    attr?:any,
+  }
+}

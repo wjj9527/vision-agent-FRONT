@@ -34,7 +34,7 @@ const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
   console.log(children)
 
   return (
-    <ElementBody className={classNameList} style={style} id={id} label={label}>
+    <ElementBody className={classNameList} style={style} id={id} label={label} type={'BasicContainer'}  handleActions={['insert','copy','delete']}>
       {/*@ts-ignore*/}
       {children.props.children?.length?children:<EmptyFill/>}
     </ElementBody>

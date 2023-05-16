@@ -20,6 +20,7 @@ export default {
     state.plugin.pluginSettingChildItemIsCanMoveStatus = action.value
   },
   [TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS]:(state:any,action:any)=>{
-    state.pluginDrawerElementSelectionVisible = action.value
+    // console.log(action.value)
+    state.plugin.pluginDrawerElementSelectionVisible = action.value
   }
 }

@@ -1,18 +1,10 @@
 import React from 'react';
+import {createUUID} from '@/pages/utils';
 //基础容器
 import BasicContainer from './container/BasicContainer'
 //卡片组
 import CardGroup from './element/CardGroup';
 
-const setting = {
-  BasicContainer:BasicContainer.Setting,
-  CardGroup:CardGroup.Setting
-}
-
-const component = {
-  BasicContainer:BasicContainer.component,
-  CardGroup:CardGroup.component,
-}
 interface pluginItemType {
   label:string,
   value:string,
@@ -25,6 +17,24 @@ interface pluginType{
   value:string,
   items:pluginItemType[]
 }
+
+//setting组件集
+const setting = {
+  BasicContainer:BasicContainer.Setting,
+  CardGroup:CardGroup.Setting
+}
+
+//渲染组件集
+const component = {
+  BasicContainer:BasicContainer.component,
+  CardGroup:CardGroup.component,
+}
+//组件默认值集合
+const defaultValue = {
+  BasicContainer:BasicContainer.defaultValue,
+  CardGroup:CardGroup.defaultValue,
+}
+//组件列表
 const plugin:pluginType[] = [
   {
     label:'容器',
@@ -54,10 +64,18 @@ const plugin:pluginType[] = [
   }
 ]
 
+const getDefaultElementData = (type:keyof typeof defaultValue,props:object={})=>{
+  const value = {...defaultValue[type]}
+  const id = createUUID()
+  Object.assign(value,{id},props)
+  return value
+}
+
 export {
   setting,
   component,
   plugin,
+  getDefaultElementData,
   pluginItemType,
   pluginType
 }
