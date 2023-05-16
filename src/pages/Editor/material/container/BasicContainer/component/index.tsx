@@ -1,10 +1,8 @@
 import React, { ReactNode, useContext } from 'react';
 import './style.less'
-
-
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
 interface DataType {
-  style:object
+  style?:object
 }
 interface DraggableAndDroppableProps {
   id: number | string ,
@@ -22,8 +20,6 @@ const EmptyFill =()=>{
   </div>
 }
 
-
-
 const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
   const {id,children,data,label} = props
   const {style} = data
@@ -31,8 +27,6 @@ const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
   const classNameList = {
     'basic-container':true,
   }
-  console.log(children)
-
   return (
     <ElementBody className={classNameList} style={style} id={id} label={label} type={'BasicContainer'}  handleActions={['insert','copy','delete']}>
       {/*@ts-ignore*/}

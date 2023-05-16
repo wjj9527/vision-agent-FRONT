@@ -10,8 +10,6 @@ import {
   justifyContentOptions,
   alignItemOptions,
   flexWrapOptions,
-  Style,
-  Container
 } from '../params';
 
 interface LayoutSettingBlockProps {

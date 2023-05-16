@@ -5,18 +5,14 @@ import { StoreContext, TYPES } from '@/pages/Editor/store';
 import classNames from 'classnames';
 import Dnd from '../Dnd'
 const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock} = LayoutSettingBlock
-interface ItemType {
-  id: string,
-  label: string,
-  type: string
-}
-
 interface IProps {
-  item: ItemType,
+  item: {
+    id:string,
+    label:string,
+    type:string
+  },
   collapse:boolean
 }
-
-
 
 const Item: React.FC<IProps> = ({ item ,}) => {
   const { id, label } = item;

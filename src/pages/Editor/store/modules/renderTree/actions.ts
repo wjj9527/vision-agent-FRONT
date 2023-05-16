@@ -29,6 +29,11 @@ export default {
     const schema = state.renderTree.schema
     const {targetId,pushValue} = action.value
     const {parent} = findContainerById(targetId,schema,)
+    //页面容器没有parent直接在页面下添加
+    if (!parent&&targetId==='0') {
+      schema.children.push(pushValue)
+      return
+    }
     // @ts-ignore
     const actionList = parent?.children
     if (actionList) {
@@ -47,7 +52,9 @@ export default {
     const schema = state.renderTree.schema
     const {element} = findContainerById(action.id,schema,)
     if (element) {
-      Object.assign(element?.data,action.data)
+      const data = JSON.parse(JSON.stringify(element?.data||{}))
+      Object.assign(data,action.data)
+      element.data = data
     }
   },
   [TYPES.RENDER_TREE_DELETE_ELEMENT_BY_ID]:(state:any,action:any)=>{
@@ -63,7 +70,7 @@ export default {
       }
     }
     if (callback&&targetIndex!==-1) {
-      callback(!!(targetIndex!==-1))
+      callback(targetIndex!==-1)
     }
   },
   [TYPES.RENDER_TREE_COPY_ELEMENT_BY_ID]:(state:any,action:any)=>{

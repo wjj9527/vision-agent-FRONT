@@ -15,12 +15,16 @@ const ElementSelection: React.FC = () => {
     dispatch({ type: TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS, value: false });
   };
   const handleCreateElement = (item: ElementType) => {
+    console.log(item)
     //@ts-ignore
     const pushValue = getDefaultElementData(item.value);
     dispatch({
       type: TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT,
       value: { pushValue, targetId: targetElementCheckedKey },
     });
+    setTimeout(()=>{
+      console.log(state.renderTree.schema)
+    },100)
   };
 
   const handleSearch = (text:string)=>{

@@ -3,6 +3,7 @@ import './style.less'
 import {setting} from '@/pages/Editor/material'
 import { findContainerById } from '@/pages/utils/findContainerById';
 import { StoreContext } from '@/pages/Editor/store';
+import PageSetting from '@/pages/Editor/material/Page/setting'
 const SettingContainer:React.FC = ()=>{
   const {state,} = useContext(StoreContext)
   const {pluginSettingFold} = state.plugin

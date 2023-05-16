@@ -21,7 +21,7 @@ interface pluginType{
 //setting组件集
 const setting = {
   BasicContainer:BasicContainer.Setting,
-  CardGroup:CardGroup.Setting
+  CardGroup:CardGroup.Setting,
 }
 
 //渲染组件集
