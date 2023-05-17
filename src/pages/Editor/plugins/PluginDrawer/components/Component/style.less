@@ -10,6 +10,32 @@
 .drawer-container-box{
   height: 100%;
   overflow: auto;
+  .add-item{
+    color: @colorPrimary;
+    font-size: 12px;
+    margin-left: 20px;
+    cursor: pointer;
+    .iconfont{
+      font-size: 14px;
+      margin-right: 4px;
+    }
+  }
+  .tree-item{
+    display: flex;
+    justify-content: space-between;
+    .handle-group{
+      opacity: 0;
+      transition: .3s ease opacity;
+      .handle-btn{
+        font-size: 12px;
+      }
+    }
+    &:hover{
+      .handle-group{
+        opacity: 1;
+      }
+    }
+  }
   .search-handle{
     height: 44px;
     padding: 0 @paddingSM;
@@ -78,5 +104,11 @@
         }
       }
     }
+  }
+}
+.dropdown-item{
+  width: 72px;
+  &:hover{
+    color: @colorPrimary;
   }
 }

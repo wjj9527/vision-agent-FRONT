@@ -2,6 +2,7 @@ import './style.less'
 import ComponentItems from './ComponentItems'
 import Outline from './Outline'
 import SchemaPlugin from './Schema';
+import MenuManagement from './MenuManagement';
 import { useContext } from 'react';
 import { StoreContext } from '@/pages/Editor/store';
 
@@ -14,6 +15,9 @@ export default ()=>{
       }
       {
         state?.plugin?.pluginCurrentTarget==='outline'&&<Outline/>
+      }
+      {
+        state?.plugin?.pluginCurrentTarget==='page'&&<MenuManagement/>
       }
       {
         state?.plugin?.pluginCurrentTarget==='json'&&<SchemaPlugin/>

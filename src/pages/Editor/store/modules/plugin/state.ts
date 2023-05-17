@@ -5,5 +5,5 @@ export default {
   pluginSettingFold:true,
   pluginSettingChildItemCollapse:false,
   pluginSettingChildItemIsCanMoveStatus:false,
-  pluginDrawerElementSelectionVisible:true,
+  pluginDrawerElementSelectionVisible:false,
 }
