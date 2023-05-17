@@ -4,6 +4,7 @@ import { findContainerById,Container } from '@/pages/utils/findContainerById';
 
 import createUUID from '@/pages/utils/UUID';
 
+import {message} from 'antd'
 
 export default {
   [TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY]:(state:any,action:any)=>{
@@ -28,7 +29,13 @@ export default {
   [TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT]:(state:any,action:any)=>{
     const schema = state.renderTree.schema
     const {targetId,pushValue} = action.value
-    const {parent} = findContainerById(targetId,schema,)
+    const {parent,element} = findContainerById(targetId,schema,)
+    //非容器直接跳过
+    //@ts-ignore
+    if (element&&!['Page','BasicContainer'].includes(element.value)) {
+      message.error('非容器不可添加子元素')
+      return
+    }
     //页面容器没有parent直接在页面下添加
     if (!parent&&targetId==='0') {
       schema.children.push(pushValue)

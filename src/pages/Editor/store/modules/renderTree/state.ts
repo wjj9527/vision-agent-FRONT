@@ -3,6 +3,7 @@ export default {
     label:'页面',
     type:'page',
     id:'0',
+    value:'Page',
     data: {
       style: {
         display: 'block',

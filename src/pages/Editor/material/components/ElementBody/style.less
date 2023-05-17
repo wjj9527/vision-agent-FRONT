@@ -5,20 +5,20 @@
   .badge-content{
     display: none;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -1px;
+    right: -1px;
     height: 22px;
     padding: @paddingXXS;
     background-color: @colorPrimary;
   }
   &:hover{
-    border: 2px solid @colorPrimary;
+    outline: 1px dashed @colorPrimary;
     .badge-content{
       display: none;
     }
   }
   &.active{
-    border: 2px solid @colorPrimary;
+    outline: 1px solid @colorPrimary;
     >.badge-content{
       display: flex;
       align-items: center;

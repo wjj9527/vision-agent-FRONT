@@ -10,7 +10,6 @@ export interface IProps {
   options:SettingOption[]
 }
 
-
 const Setting:React.FC<IProps>=(props)=>{
   const {options} = props
   const [defaultItem] = options

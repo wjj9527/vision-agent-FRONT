@@ -1,14 +1,35 @@
-import {plugin,pluginType,pluginItemType} from '@/pages/Editor/material';
-import { Input, Card } from 'antd';
-const { Search } = Input;
-import Item from './Item';
-import { useState } from 'react';
+import React, { useContext,useState } from 'react';
+import { Drawer, Button, Input } from 'antd';
+import './style.less';
+import { StoreContext, TYPES } from '@/pages/Editor/store';
+import { plugin, getDefaultElementData, pluginType, pluginItemType } from '@/pages/Editor/material';
+import type { ElementType } from '@/pages/Editor/Types';
 
-export default () => {
-  const [configState,setConfigState] = useState(plugin)
-  const handleOnSearch = (text:string)=>{
-    const configList = JSON.parse(JSON.stringify(plugin))
-    let stateList:pluginType[] = []
+const { Search } = Input;
+const ElementSelection: React.FC = () => {
+  const { state, dispatch } = useContext(StoreContext);
+  const { pluginDrawerElementSelectionVisible } = state.plugin;
+  const { targetElementCheckedKey } = state.renderTree;
+  const [pluginList,setPluginList] = useState(plugin)
+  const handleClose = () => {
+    dispatch({ type: TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS, value: false });
+  };
+  const handleCreateElement = (item: ElementType) => {
+    console.log(item)
+    //@ts-ignore
+    const pushValue = getDefaultElementData(item.value);
+    dispatch({
+      type: TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT,
+      value: { pushValue, targetId: targetElementCheckedKey },
+    });
+    setTimeout(()=>{
+      console.log(state.renderTree.schema)
+    },100)
+  };
+
+  const handleSearch = (text:string)=>{
+    let configList =  JSON.parse(JSON.stringify(plugin));
+    let stateList:pluginType[] = [];
     configList.forEach((item:pluginType)=>{
       const blockItems = item.items.filter((i: pluginItemType)=>{
         return i.label.includes(text)||i.searchEKEY.toUpperCase().includes(text.toUpperCase())
@@ -18,33 +39,60 @@ export default () => {
       !!blockItems.length&&stateList.push(item)
     })
     // @ts-ignore
-    setConfigState(stateList)
+    setPluginList(stateList)
   }
-  return <div className='drawer-container-box'>
-    <div className='search-handle'>
-      <Search onSearch={handleOnSearch} allowClear/>
-    </div>
-    <div className='plugin-scroll-container'>
-      {
-        configState.map(item => <Card title={item.label} key={item.value}>
-          <div className='drawer-card-container'>
-            {
-              //@ts-ignore
-              item?.items.map(i => <Item className='drawer-label-item' {...i} key={i.value}>
-                  <div>
-                    <div className='icon-box'>
-                      <div className={`iconfont ${i.icon}`}>
+  const handleClear = (text:string)=>{
+    if (!!text) {
+      handleSearch('')
+    }
+  }
 
-                      </div>
+  return <div className='inner-container'>
+      <div className='drawer-inner-header'>
+        {/*@ts-ignore*/}
+        <Search placeholder='请输入要搜索的组件名' allowClear onSearch={handleSearch} onInput={handleClear} />
+      </div>
+      <div className='drawer-inner-content'>
+        {
+          pluginList.map(i => {
+            return <div className='items-content' key={i.value}>
+              <div className='label'>{i.label}</div>
+              <div className='items-block'>
+                {
+                  // @ts-ignore
+                  i.items.map(b => (<div className='item' key={b.value} onClick={handleCreateElement.bind(this, b)}>
+                    <div className='icon-block'>
+                      <i className={`iconfont ${b.icon}`} />
                     </div>
-                    <div className='label'>{i.label}</div>
-                  </div>
-                </Item>
-              )
-            }
-          </div>
-        </Card>)
-      }
+                    <div className='title'>{b.label}</div>
+                  </div>))
+                }
+              </div>
+            </div>;
+          })
+        }
+
+        {
+          pluginList.map(i => {
+            return <div className='items-content' key={i.value}>
+              <div className='label'>{i.label}</div>
+              <div className='items-block'>
+                {
+                  // @ts-ignore
+                  i.items.map(b => (<div className='item' key={b.value} onClick={handleCreateElement.bind(this, b)}>
+                    <div className='icon-block'>
+                      <i className={`iconfont ${b.icon}`} />
+                    </div>
+                    <div className='title'>{b.label}</div>
+                  </div>))
+                }
+              </div>
+            </div>;
+          })
+        }
+      </div>
     </div>
-  </div>;
-}
+
+};
+
+export default ElementSelection;
