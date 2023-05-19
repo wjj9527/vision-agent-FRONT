@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import "./style.less"
 import { StoreContext,TYPES } from '@/pages/Editor/store';
-import {Button} from 'antd'
+import { Button, message } from 'antd';
 import { updateCurrentTargetSchema } from '@/http/api/editor';
 const TopBtnGroup:React.FC = ()=>{
   const {state,dispatch} = useContext(StoreContext)
@@ -12,8 +12,8 @@ const TopBtnGroup:React.FC = ()=>{
   const handleSaveSchema = ()=>{
     const schemaStr = JSON.stringify(schema)
     const {id} = pluginPageDefaultData
-    updateCurrentTargetSchema({schema:schemaStr,menuId:id}).then(res=>{
-
+    updateCurrentTargetSchema({schema:schemaStr,menuId:id}).then(()=>{
+      message.success('保存成功')
     })
   }
   return <div className="top-btn-group">

@@ -54,6 +54,8 @@ const MenuManagement: React.FC = () => {
         }catch (err){
           dispatch({type:TYPES.RENDER_TREE_SCHEMA_REPLACE,value:defaultValue})
         }
+      }else{
+        dispatch({type:TYPES.RENDER_TREE_SCHEMA_REPLACE,value:defaultValue})
       }
     })
   }

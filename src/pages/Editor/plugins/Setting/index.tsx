@@ -18,7 +18,7 @@ const SettingContainer:React.FC = ()=>{
   },[targetElementCheckedKey])
   //获取当前元素类型
   // @ts-ignore
-  const settingElement = setting[currentElementType]||<></>
+  const settingElement = setting[currentElementType]||<PageSetting/>
   return pluginSettingFold?<div className="setting-container">
     {settingElement}
   </div>:<></>

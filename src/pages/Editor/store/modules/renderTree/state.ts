@@ -27,5 +27,5 @@ export default {
     },
     children:[]
   },
-  targetElementCheckedKey:'',
+  targetElementCheckedKey:'0',
 }

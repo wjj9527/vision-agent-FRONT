@@ -23,5 +23,6 @@ export default {
       widthPrefix: 'px',
       heightPrefix: 'px',
     },
-  }
+  },
+  children:[]
 }
