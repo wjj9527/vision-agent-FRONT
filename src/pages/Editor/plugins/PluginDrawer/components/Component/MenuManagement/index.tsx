@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState, } from 'react';
-import { deleteMenuItemById, menuListGetting } from '@/http/api/editor';
-import { Tree, Input, Button, Popconfirm, message } from 'antd';
+import React, { useContext,} from 'react';
+import { deleteMenuItemById, menuListGetting,getPageSchema } from '@/http/api/editor';
+import { Tree, Input, Button,  message } from 'antd';
 import type { DataNode,} from 'antd/es/tree';
 import CreateMenuDialog from '@/pages/Editor/plugins/PluginDrawer/dialog/CreateMenuDialog';
 import TitleEdit from '@/pages/Editor/plugins/PluginDrawer/components/Component/MenuManagement/TitleEdit';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
+import defaultValue from '@/pages/Editor/material/Page/defaultValue';
 interface TitleRenderType extends DataNode{
   type: number | string,
   title: string,
@@ -40,10 +41,21 @@ const MenuManagement: React.FC = () => {
 
   const handleOnSelect= (node:any)=>{
     const {key,type} = node
-    if (Number(type) === 1) {
+    const pluginPageDefaultData = state.plugin.pluginPageDefaultData
+
+    if (Number(type) === 1||pluginPageDefaultData.key===key) {
       return
     }
     dispatch({type:TYPES.SETTING_PLUGIN_PAGE_DEFAULT_DATA,value:{id:key,...node}})
+    getPageSchema({menuId:key}).then(res=>{
+      if (res?.data?.schema) {
+        try {
+          dispatch({type:TYPES.RENDER_TREE_SCHEMA_REPLACE,value:JSON.parse(res?.data?.schema)})
+        }catch (err){
+          dispatch({type:TYPES.RENDER_TREE_SCHEMA_REPLACE,value:defaultValue})
+        }
+      }
+    })
   }
   const titleRender = (item: TitleRenderType) => {
     return <div className='tree-item' onClick={handleOnSelect.bind(this,item)}>

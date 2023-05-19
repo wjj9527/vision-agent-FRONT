@@ -16,7 +16,6 @@ const TitleEdit:React.FC<IProps>=({id,label,type})=>{
   const handleInput:HandleInputType = (e)=>{
     //@ts-ignore
     setLabelText(e.target?.value)
-
   }
 
   const submitTitleData = ()=>{

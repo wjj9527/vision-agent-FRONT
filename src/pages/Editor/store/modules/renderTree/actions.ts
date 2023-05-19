@@ -124,5 +124,8 @@ export default {
       list?.splice(containerIndex+1,0,insertData)
       console.log(parent)
     }
+  },
+  [TYPES.RENDER_TREE_SCHEMA_REPLACE]:(state:any,action:any)=>{
+    state.renderTree.schema = action.value
   }
 }
