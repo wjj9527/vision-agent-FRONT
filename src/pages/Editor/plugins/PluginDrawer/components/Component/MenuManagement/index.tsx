@@ -47,6 +47,7 @@ const MenuManagement: React.FC = () => {
       return
     }
     dispatch({type:TYPES.SETTING_PLUGIN_PAGE_DEFAULT_DATA,value:{id:key,...node}})
+    dispatch({type:TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY,value:'0'})
     getPageSchema({menuId:key}).then(res=>{
       if (res?.data?.schema) {
         try {
