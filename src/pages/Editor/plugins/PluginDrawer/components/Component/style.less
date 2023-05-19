@@ -23,6 +23,14 @@
   .tree-item{
     display: flex;
     justify-content: space-between;
+
+    .title{
+      display: flex;
+      .iconfont{
+        font-size: 12px;
+        margin-right: 8px;
+      }
+    }
     .handle-group{
       opacity: 0;
       transition: .3s ease opacity;
@@ -30,9 +38,29 @@
         font-size: 12px;
       }
     }
+    .title-edit{
+      display: flex;
+      align-items: center;
+    }
+    .edit-btn{
+      font-size: 12px;
+    }
+    .label-edit{
+      display: none;
+      font-size: 14px !important;
+      margin-left: 4px;
+    }
+    .title-edit-input{
+      display: inline;
+      max-width: 80px;
+      //background: transparent;
+    }
     &:hover{
       .handle-group{
         opacity: 1;
+      }
+      .label-edit{
+        display: inline-block;
       }
     }
   }

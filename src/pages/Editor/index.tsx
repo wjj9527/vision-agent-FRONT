@@ -5,7 +5,7 @@ import PreviewBody from './PreviewBody';
 import SettingContainer from '@/pages/Editor/plugins/Setting';
 import TopBtnGroup from '@/pages/Editor/plugins/TopBtnGroup';
 import ElementSelection from '@/pages/Editor/material/drawer/ElementSelection'
-import { Store,} from './store';
+import { Store, StoreContext } from './store';
 import { DndProvider,} from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 

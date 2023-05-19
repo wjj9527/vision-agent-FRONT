@@ -1,79 +1,82 @@
-import React, { useEffect, useState } from 'react';
-import { menuListGetting, createMenuItemAction } from '@/http/api/editor';
-import { Tree, Input, Button, Dropdown, MenuProps } from 'antd';
-import type { TreeProps, DataNode } from 'antd/es/tree';
+import React, { useContext, useEffect, useState, } from 'react';
+import { deleteMenuItemById, menuListGetting } from '@/http/api/editor';
+import { Tree, Input, Button, Popconfirm, message } from 'antd';
+import type { DataNode,} from 'antd/es/tree';
+import CreateMenuDialog from '@/pages/Editor/plugins/PluginDrawer/dialog/CreateMenuDialog';
+import TitleEdit from '@/pages/Editor/plugins/PluginDrawer/components/Component/MenuManagement/TitleEdit';
+import { StoreContext, TYPES } from '@/pages/Editor/store';
+interface TitleRenderType extends DataNode{
+  type: number | string,
+  title: string,
+  parentId: number | string,
 
+}
 const { Search } = Input;
 
 const MenuManagement: React.FC = () => {
-  const [renderTree, setRenderTree] = useState([]);
+  const { state,dispatch } = useContext(StoreContext);
+  const renderTree = state.plugin.menuList
   const getMenuSource = () => {
-    menuListGetting().then(res => {
-      const { data } = res;
-      const renameIdToKey = (obj: any) => {
-        if (Array.isArray(obj)) {
-          return obj.map((item) => {
-            const newItem = { ...item };
-            newItem.key = newItem.id;
-            delete newItem.id;
-            newItem.children = renameIdToKey(newItem.children);
-            return newItem;
-          });
-        }
-        const newObj = { ...obj };
-        newObj.key = newObj.id;
-        delete newObj.id;
-        newObj.children = renameIdToKey(newObj.children);
-        return newObj;
-      };
-      const nodes = renameIdToKey(data);
-      setRenderTree(nodes);
-    });
+    menuListGetting().then(res=>{
+      dispatch({type:TYPES.SETTING_PLUGIN_MENU_LIST,value:res.data})
+    })
   };
 
   const handleOnSearch = () => {
 
   };
-
-  const handleCreateItem = (data: any) => {
-    createMenuItemAction(data).then(res => {
-    });
+  const handleDelete =(id:string|number)=>{
+    deleteMenuItemById({id}).then(()=>{
+      message.success('删除成功')
+      getMenuSource()
+    })
+  }
+  const handleOpenCreateMenuDialog = ({ parentId, parentType,}: { parentId: string | number, parentType: null | number | string }) => {
+    const type = !parentType ? null : 2;
+    const title = '';
+    dispatch({ type: TYPES.UPDATE_PLUGIN_DIALOG_CREATE_MENU_FORM_DEFAULT_VALUE, value: { parentId, type, title } });
+    dispatch({ type: TYPES.UPDATE_PLUGIN_DIALOG_CREATE_MENU_VISIBLE_STATUS, value: true });
   };
-  const dropDownItems: MenuProps['items'] = [
-    {
-      label: <div className="dropdown-item" onClick={(e)=>{
-        e.stopPropagation()
-        handleCreateItem({parentId:0,type:2,title:'测试页面'})
-      }}>页面</div>,
-      key: '0',
-    },
-    {
-      label: <div className="dropdown-item" onClick={(e)=>{
-        e.stopPropagation()
-        handleCreateItem({parentId:0,type:2,title:'测试菜单'})
-      }}>菜单</div>,
-      key: '1',
-    },
-  ];
-  const titleRender = (item: DataNode) => {
-    return <div className='tree-item'>
+
+  const handleOnSelect= (node:any)=>{
+    const {key,type} = node
+    if (Number(type) === 1) {
+      return
+    }
+    dispatch({type:TYPES.SETTING_PLUGIN_PAGE_DEFAULT_DATA,value:{id:key,...node}})
+  }
+  const titleRender = (item: TitleRenderType) => {
+    return <div className='tree-item' onClick={handleOnSelect.bind(this,item)}>
       <div className='title'>
-        {item.title}
+        <TitleEdit id={item.key} label={item.title} type={item.type}/>
       </div>
       <div className='handle-group'>
-        <Button type='link' size='small' className='handle-btn'>
-          新增
-        </Button>
-        <Button type='link' danger size='small' className='handle-btn'>
+        {
+          Number(item.type) === 1 && (
+            <Button
+              type='link'
+              size='small'
+              onClick={
+                (e)=>{
+                  e.stopPropagation()
+                  handleOpenCreateMenuDialog({parentId:item.key, parentType:2,})
+                }
+              }
+              className='handle-btn'>
+              新增
+            </Button>)
+        }
+        <Button type='link' danger size='small' className='handle-btn' onClick={(e)=>{
+          e.stopPropagation()
+          handleDelete(item.key)
+        }}>
           删除
         </Button>
       </div>
     </div>;
   };
-  useEffect(() => {
-    getMenuSource();
-  }, []);
   return <div className='drawer-container-box'>
+    <CreateMenuDialog onFresh={getMenuSource}/>
     <div className='search-handle'>
       <Search onSearch={handleOnSearch} allowClear />
     </div>
@@ -81,21 +84,17 @@ const MenuManagement: React.FC = () => {
       <div className='bg-fill'>
         {
           renderTree.length > 0 && <Tree
-            // onSelect={handleOnSelect}
             autoExpandParent
             defaultExpandAll
             defaultExpandParent
-            // selectedKeys={[state.renderTree.targetElementCheckedKey]}
+            selectedKeys={[state.plugin.pluginPageDefaultData.id]}
             treeData={renderTree}
             titleRender={titleRender}
             showIcon />
         }
-        <Dropdown menu={{ items: dropDownItems }} placement='bottom' arrow>
-          {/*<Button>新增</Button>*/}
-          <span className='add-item'>
+        <span className='add-item' onClick={handleOpenCreateMenuDialog.bind(this, { parentId: 0, parentType: null })}>
             <i className='iconfont icon-add' />新增
-          </span>
-        </Dropdown>
+        </span>
       </div>
     </div>
   </div>;

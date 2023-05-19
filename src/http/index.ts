@@ -1,7 +1,6 @@
 import Axios, { AxiosRequestConfig } from 'axios'
 import {message} from 'antd'
 import axiosRetry from 'axios-retry'
-import qs from 'qs'
 
 const client = Axios.create({
   baseURL:'http://192.168.2.176:8009/',
@@ -12,19 +11,19 @@ axiosRetry(client, { retries: 3 })
 
 export async function request(config:AxiosRequestConfig) {
   try {
-    await client.request(config)
+    const response = await client.request(config)
+    const {data} = response
+    if (data.success !== 1) {
+      message.error(data.message)
+      return Promise.reject(response)
+    }
+    return data
   }catch (err:any){
     const response = err?.response
     message.error('网络错误')
     return Promise.reject(response)
   }
-  const response = await client.request(config)
-  const {data} = response
-  if (data.success !== 1) {
-    message.error('数据错误')
-    return Promise.reject(response)
-  }
-  return data
+
 }
 
 export const $get =(url:string,data?:any,config?:AxiosRequestConfig)=>{
@@ -40,7 +39,14 @@ export const $get =(url:string,data?:any,config?:AxiosRequestConfig)=>{
 }
 
 export const $delete = (url:string,data?:any,config?:AxiosRequestConfig)=>{
-
+  const method = 'DELETE'
+  const headers = {
+    "Content-Type": "application/json",
+  }||config?.headers
+  const responseType= "json"||config?.responseType
+  const axiosConfig = {...config}
+  Object.assign(axiosConfig,{url,method,headers,responseType,params:data})
+  return request(axiosConfig)
 }
 export const $post =(url:string,data?:any,config?:AxiosRequestConfig)=>{
   const method = 'POST'
@@ -52,6 +58,13 @@ export const $post =(url:string,data?:any,config?:AxiosRequestConfig)=>{
   Object.assign(axiosConfig,{url,method,headers,responseType,data})
   return request(axiosConfig)
 }
-export const $put =()=>{
-
+export const $put =(url:string,data?:any,config?:AxiosRequestConfig)=>{
+  const method = 'PUT'
+  const headers = {
+    "Content-Type": "application/json",
+  }||config?.headers
+  const responseType= "json"||config?.responseType
+  const axiosConfig = {...config}
+  Object.assign(axiosConfig,{url,method,headers,responseType,data})
+  return request(axiosConfig)
 }
