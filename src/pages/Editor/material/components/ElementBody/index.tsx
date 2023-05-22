@@ -73,7 +73,7 @@ const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, chil
   const handleGroupList:JSX.Element[] = handleActions.map(key=>{
     return handleActionsElements[key]
   })
-  return <div style={CSSFormat(style)} className={classNamesList} onClick={handleTargetElementSetting}>
+  return <div style={CSSFormat(style||{})} className={classNamesList} onClick={handleTargetElementSetting}>
     <div className='badge-content'>
       <div className='label'>{label}</div>
       <div className='handle-group'>

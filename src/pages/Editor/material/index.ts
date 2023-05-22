@@ -4,6 +4,8 @@ import {createUUID} from '@/pages/utils';
 import BasicContainer from './container/BasicContainer'
 //卡片组
 import CardGroup from './element/CardGroup';
+//柱状图
+import BarGraph from '@/pages/Editor/material/charts/BarGraph';
 
 interface pluginItemType {
   label:string,
@@ -22,17 +24,20 @@ interface pluginType{
 const setting = {
   BasicContainer:BasicContainer.Setting,
   CardGroup:CardGroup.Setting,
+  BarGraph:BarGraph.Setting,
 }
 
 //渲染组件集
 const component = {
   BasicContainer:BasicContainer.component,
   CardGroup:CardGroup.component,
+  BarGraph:BarGraph.component
 }
 //组件默认值集合
 const defaultValue = {
   BasicContainer:BasicContainer.defaultValue,
   CardGroup:CardGroup.defaultValue,
+  BarGraph:BarGraph.defaultValue
 }
 //组件列表
 const plugin:pluginType[] = [
@@ -57,6 +62,19 @@ const plugin:pluginType[] = [
         label:'卡片组',
         value:'CardGroup',
         searchEKEY:'KPZ',
+        icon:'icon-yemiankuangjia_o',
+        component:CardGroup.component
+      }
+    ]
+  },
+  {
+    label:'统计',
+    value:'charts',
+    items:[
+      {
+        label:'柱状图',
+        value:'BarGraph',
+        searchEKEY:'ZZT',
         icon:'icon-yemiankuangjia_o',
         component:CardGroup.component
       }

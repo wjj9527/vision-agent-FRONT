@@ -71,25 +71,6 @@ const ElementSelection: React.FC = () => {
             </div>;
           })
         }
-
-        {
-          pluginList.map(i => {
-            return <div className='items-content' key={i.value}>
-              <div className='label'>{i.label}</div>
-              <div className='items-block'>
-                {
-                  // @ts-ignore
-                  i.items.map(b => (<div className='item' key={b.value} onClick={handleCreateElement.bind(this, b)}>
-                    <div className='icon-block'>
-                      <i className={`iconfont ${b.icon}`} />
-                    </div>
-                    <div className='title'>{b.label}</div>
-                  </div>))
-                }
-              </div>
-            </div>;
-          })
-        }
       </div>
     </div>
 
