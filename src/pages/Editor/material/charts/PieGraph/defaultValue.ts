@@ -1,9 +1,9 @@
 import type {ElementType} from '@/pages/Editor/Types';
 
 const defaultValue:ElementType = {
-  label: '柱状图',
-  type: 'BarGraph',
-  value:'BarGraph',
+  label: '饼状图',
+  type: 'PieGraph',
+  value:'PieGraph',
   id:'',
   data: {
     style: {
@@ -26,7 +26,7 @@ const defaultValue:ElementType = {
       heightPrefix: 'px',
     },
     attribute:{
-      title:'柱状图',
+      title:'饼状图',
       chartType:'clustered',
       chartDisplayMode:'y',
       offsetXTitle:'x',

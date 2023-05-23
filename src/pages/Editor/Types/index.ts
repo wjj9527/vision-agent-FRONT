@@ -17,7 +17,7 @@ export type StyleType = {
   widthPrefix: 'px' | 'em' | '%' | string;
   heightPrefix: 'px' | 'em' | '%' | string;
 };
-
+//外框参数类型
 export type ElementType = {
   label:string,
   type:string|undefined|null,
@@ -26,6 +26,15 @@ export type ElementType = {
   data:{
     style?:StyleType,
     data?:any,
-    attr?:any,
-  }
+    attribute?:any,
+  },
+}
+//antd select options
+export type SelectOptionType = {
+  value:string|null|number,
+  label:string|null|number
+}
+export type CheckBoxOptionType = {
+  value:string|number,
+  label:string
 }

@@ -15,7 +15,6 @@ const ElementSelection: React.FC = () => {
     dispatch({ type: TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS, value: false });
   };
   const handleCreateElement = (item: ElementType) => {
-    console.log(item)
     //@ts-ignore
     const pushValue = getDefaultElementData(item.value);
     dispatch({

@@ -6,6 +6,8 @@ import BasicContainer from './container/BasicContainer'
 import CardGroup from './element/CardGroup';
 //柱状图
 import BarGraph from '@/pages/Editor/material/charts/BarGraph';
+//饼状图
+import PieGraph from '@/pages/Editor/material/charts/PieGraph'
 
 interface pluginItemType {
   label:string,
@@ -25,19 +27,22 @@ const setting = {
   BasicContainer:BasicContainer.Setting,
   CardGroup:CardGroup.Setting,
   BarGraph:BarGraph.Setting,
+  PieGraph:PieGraph.Setting
 }
 
 //渲染组件集
 const component = {
   BasicContainer:BasicContainer.component,
   CardGroup:CardGroup.component,
-  BarGraph:BarGraph.component
+  BarGraph:BarGraph.component,
+  PieGraph:PieGraph.component
 }
 //组件默认值集合
 const defaultValue = {
   BasicContainer:BasicContainer.defaultValue,
   CardGroup:CardGroup.defaultValue,
-  BarGraph:BarGraph.defaultValue
+  BarGraph:BarGraph.defaultValue,
+  PieGraph:PieGraph.defaultValue
 }
 //组件列表
 const plugin:pluginType[] = [
@@ -76,7 +81,14 @@ const plugin:pluginType[] = [
         value:'BarGraph',
         searchEKEY:'ZZT',
         icon:'icon-yemiankuangjia_o',
-        component:CardGroup.component
+        component:BarGraph.component
+      },
+      {
+        label:'饼状图',
+        value:'PieGraph',
+        searchEKEY:'BZT',
+        icon:'icon-yemiankuangjia_o',
+        component:PieGraph.component
       }
     ]
   }
