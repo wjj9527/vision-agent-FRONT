@@ -1,9 +1,9 @@
 import type {ElementType} from '@/pages/Editor/Types';
 
 const defaultValue:ElementType = {
-  label: '饼状图',
-  type: 'PieGraph',
-  value:'PieGraph',
+  label: '折线图',
+  type: 'LineGraph',
+  value:'LineGraph',
   id:'',
   data: {
     style: {
@@ -26,11 +26,19 @@ const defaultValue:ElementType = {
       heightPrefix: 'px',
     },
     attribute:{
-      title:'饼状图',
-      chartType:'pie',
+      title:'折线图',
+      chartType:'clustered',
+      chartDisplayMode:'y',
+      offsetXTitle:'x',
+      offsetYTitle:'y',
       legendVisible:false,
       legendX:'left',
       legendY:'top',
+      gridVisible:[],
+      gridXLineStyleType:'solid',
+      gridXLineStyleColor:'#dddddd',
+      gridYLineStyleType:'solid',
+      gridYLineStyleColor:'#dddddd',
       dataTag:false,
       legendLayout:'horizontal'
     }

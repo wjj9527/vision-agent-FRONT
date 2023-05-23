@@ -5,6 +5,8 @@ import {
   chartTypeOptions,
   legendXOptions,
   legendYOptions,
+  lineStyleTypeOptions,
+  gridReviewOptions,
   legendLayoutOptions,
   AttributeType
 } from './params';
@@ -20,6 +22,7 @@ const Attribute:React.FC<IProps> = ({id})=>{
   const currentTargetId = id||state.renderTree.targetElementCheckedKey
   // @ts-ignore
   const currentElement = findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.attribute||{}
+  console.log(currentElement)
   const [defaultValue,setDefaultValue] = useState<AttributeType>(currentElement)
   useEffect(()=>{
     // @ts-ignore
@@ -50,7 +53,17 @@ const Attribute:React.FC<IProps> = ({id})=>{
         <Select placeholder="请选择图表类型" onChange={e=>setSchemaData(e,'chartType')} value={defaultValue.chartType} options={chartTypeOptions} className="fill-select"/>
       </div>
     </div>
-
+    <div className='inline-block-item'>
+      <div className='label'>坐标标题</div>
+      <div className='content'>
+        <div className='group'>
+          {/*@ts-ignore*/}
+          <Input placeholder="X" onInput={e=>setSchemaData(e.target.value,'offsetXTitle')} value={defaultValue.offsetXTitle} className="offset"/>
+          {/*@ts-ignore*/}
+          <Input placeholder="Y" onInput={e=>setSchemaData(e.target.value,'offsetYTitle')} value={defaultValue.offsetYTitle} className="offset"/>
+        </div>
+      </div>
+    </div>
     <div className='inline-block-item'>
       <div className='label'>图例</div>
       <div className='content'>
@@ -76,6 +89,40 @@ const Attribute:React.FC<IProps> = ({id})=>{
             </div>
           </div>
         </>
+      )
+    }
+    <div className='inline-block-item'>
+      <div className='label'>网格</div>
+      <div className='content'>
+        <Checkbox.Group onChange={e=>setSchemaData(e,'gridVisible')} value={defaultValue.gridVisible} options={gridReviewOptions}/>
+      </div>
+    </div>
+    {
+      //@ts-ignore
+      defaultValue?.gridVisible?.includes('x')&&(
+        <div className='inline-block-item'>
+          <div className='label'>水平网格线</div>
+          <div className='content'>
+            <div className='group'>
+              <Select placeholder="样式"  className="offset" onChange={e=>setSchemaData(e,'gridXLineStyleType')} value={defaultValue.gridXLineStyleType} options={lineStyleTypeOptions}/>
+              <input type="color" className="offset" value={defaultValue.gridXLineStyleColor} onChange={e=>setSchemaData(e.target.value,'gridXLineStyleColor')}/>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    {
+      //@ts-ignore
+      defaultValue.gridVisible?.includes('y')&&(
+        <div className='inline-block-item'>
+          <div className='label'>垂直网格线</div>
+          <div className='content'>
+            <div className='group'>
+              <Select placeholder="样式" className="offset" onChange={e=>setSchemaData(e,'gridYLineStyleType')} value={defaultValue.gridYLineStyleType} options={lineStyleTypeOptions}/>
+              <input type="color" className="offset" value={defaultValue.gridYLineStyleColor} onChange={e=>setSchemaData(e.target.value,'gridYLineStyleColor')}/>
+            </div>
+          </div>
+        </div>
       )
     }
     <div className='inline-block-item'>

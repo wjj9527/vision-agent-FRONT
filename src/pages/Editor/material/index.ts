@@ -8,6 +8,8 @@ import CardGroup from './element/CardGroup';
 import BarGraph from '@/pages/Editor/material/charts/BarGraph';
 //饼状图
 import PieGraph from '@/pages/Editor/material/charts/PieGraph'
+//折线图
+import LineGraph from '@/pages/Editor/material/charts/LineGraph'
 
 interface pluginItemType {
   label:string,
@@ -27,7 +29,8 @@ const setting = {
   BasicContainer:BasicContainer.Setting,
   CardGroup:CardGroup.Setting,
   BarGraph:BarGraph.Setting,
-  PieGraph:PieGraph.Setting
+  PieGraph:PieGraph.Setting,
+  LineGraph:LineGraph.Setting
 }
 
 //渲染组件集
@@ -35,14 +38,16 @@ const component = {
   BasicContainer:BasicContainer.component,
   CardGroup:CardGroup.component,
   BarGraph:BarGraph.component,
-  PieGraph:PieGraph.component
+  PieGraph:PieGraph.component,
+  LineGraph:LineGraph.component
 }
 //组件默认值集合
 const defaultValue = {
   BasicContainer:BasicContainer.defaultValue,
   CardGroup:CardGroup.defaultValue,
   BarGraph:BarGraph.defaultValue,
-  PieGraph:PieGraph.defaultValue
+  PieGraph:PieGraph.defaultValue,
+  LineGraph:LineGraph.defaultValue
 }
 //组件列表
 const plugin:pluginType[] = [
@@ -89,6 +94,13 @@ const plugin:pluginType[] = [
         searchEKEY:'BZT',
         icon:'icon-yemiankuangjia_o',
         component:PieGraph.component
+      },
+      {
+        label:'折线图',
+        value:'LineGraph',
+        searchEKEY:'ZXT',
+        icon:'icon-yemiankuangjia_o',
+        component:LineGraph.component
       }
     ]
   }

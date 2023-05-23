@@ -1,7 +1,10 @@
 import { CheckBoxOptionType, SelectOptionType } from '@/pages/Editor/Types';
 export type AttributeType = {
   title:string,
-  chartType:null|'pie'|'rosePie'|'doughnutPoe',
+  chartType:null|'line'|'areaLine',
+  chartDisplayMode:'x'|'y',
+  offsetXTitle:string,
+  offsetYTitle:string,
   legendVisible:boolean,
   legendX:'left'|'center'|'right',
   legendY:'top'|'center'|'bottom',
@@ -14,14 +17,10 @@ export type AttributeType = {
   legendLayout:'horizontal'|'vertical'|undefined|null
 }
 export const chartTypeOptions:SelectOptionType[] = [
-  {value:'pie',label:'饼图'},
-  {value:'rosePie',label:'玫瑰图'},
-  {value:'doughnutPoe',label:'环形图'},
+  {value:'line',label:'折线图'},
+  {value:'areaLine',label:'面积图'},
 ]
-export const chartDisplayModeOptions:SelectOptionType[] = [
-  {value:'x',label:'水平'},
-  {value:'y',label:'垂直'},
-]
+
 export const legendXOptions:SelectOptionType[] = [
   {value:'left',label:'左侧'},
   {value:'center',label:'居中'},
@@ -32,7 +31,15 @@ export const legendYOptions:SelectOptionType[] = [
   {value:'center',label:'水平'},
   {value:'bottom',label:'底部'},
 ]
+export const lineStyleTypeOptions:SelectOptionType[] = [
+  {value:'solid',label:'实线'},
+  {value:'dashed',label:'虚线'},
+]
 
+export const gridReviewOptions:CheckBoxOptionType[] = [
+  {value:'x',label:'水平'},
+  {value:'y',label:'垂直'},
+]
 export const legendLayoutOptions:SelectOptionType[] = [
   {value:'horizontal',label:'水平排列'},
   {value:'vertical',label:'竖直排列'},
