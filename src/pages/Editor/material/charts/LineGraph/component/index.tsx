@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef,} from 'react';
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
 import * as echarts from 'echarts';
 import './style.less';
@@ -29,7 +29,6 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
     }
     const {
       chartType,
-      chartDisplayMode,
       legendVisible,
       legendX,
       legendY,
@@ -44,8 +43,6 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
       dataTag,
       title
     } = attribute;
-    // 设置可视块类型
-
     let titleObj = {
       text:title
     }
