@@ -23,12 +23,10 @@ const Attribute:React.FC<IProps> = ({id})=>{
   const currentTargetId = id||state.renderTree.targetElementCheckedKey
   // @ts-ignore
   const currentElement = findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.attribute||{}
-  console.log(currentElement)
   const [defaultValue,setDefaultValue] = useState<AttributeType>(currentElement)
   useEffect(()=>{
     // @ts-ignore
     setDefaultValue(findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.attribute||{})
-    console.log(defaultValue)
   },[currentTargetId])
   //@ts-ignore
   const setSchemaData = (e: string|boolean|Array, type: keyof defaultValue|string)=>{

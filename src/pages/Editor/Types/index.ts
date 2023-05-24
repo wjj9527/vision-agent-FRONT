@@ -27,6 +27,7 @@ export type ElementType = {
     style?:StyleType,
     data?:any,
     attribute?:any,
+    datasource?:any
   },
 }
 //antd select options

@@ -14,26 +14,17 @@ interface ElementProps {
 }
 interface DataType {
   style: object,
-  attribute: AttributeType
+  attribute: AttributeType,
+  datasource:any
 }
 
 const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
   const chartRef = useRef(null);
   let chart:any = null
-  const { style, attribute } = data;
-  const [dataSource,setDataSource] = useState({})
-  const getChartsBarMockDataGetting = ()=>{
-    const data = { 'data': ['空调机组', '照明', '水表', '风机', '水泵', '电梯',"电表"],"series":[{"name":"在线数","data":[8,6,3,7,5,4,0]},{"name":"离线数","data":[1,0,0,0,0,0,3]}]}
-    setTimeout(()=>{
-      setDataSource({
-        categoryData : data.data,
-        series:data.series
-      })
-    },100)
-  }
+  const { style, attribute ,datasource} = data;
+
   const chartSettingAction = () => {
-    // console.log(dataSource)
-    const dataSource = { 'data': ['空调机组', '照明', '水表', '风机', '水泵', '电梯',"电表"],"series":[{"name":"在线数","data":[8,6,3,7,5,4,0]},{"name":"离线数","data":[1,0,0,0,0,0,3]}]}
+    const dataSource = JSON.parse(JSON.stringify(datasource))
     if (!chartRef.current) {
       return
     }
@@ -171,6 +162,7 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
     }
     if (chart) {
       chart.dispose()
+      alert()
     }
     chart = echarts.init(chartRef.current);
     chart.setOption({
@@ -181,14 +173,10 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
       title:titleObj,
       series
     },true);
-    // setRefresh(true)
   };
   useEffect(() => {
     chartSettingAction();
-  }, [attribute,]);
-  useEffect(()=>{
-    getChartsBarMockDataGetting()
-  },[])
+  }, [attribute,datasource]);
 
   return <ElementBody className={{'chart-wrapper':true}} id={id} label={label} style={style}>
     <div className='chart-container' ref={chartRef}/>

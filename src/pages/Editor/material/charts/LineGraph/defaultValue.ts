@@ -27,7 +27,7 @@ const defaultValue:ElementType = {
     },
     attribute:{
       title:'折线图',
-      chartType:'clustered',
+      chartType:'line',
       chartDisplayMode:'y',
       offsetXTitle:'x',
       offsetYTitle:'y',
@@ -41,7 +41,8 @@ const defaultValue:ElementType = {
       gridYLineStyleColor:'#dddddd',
       dataTag:false,
       legendLayout:'horizontal'
-    }
+    },
+    datasource:{ 'data': ['空调机组', '照明', '水表', '风机', '水泵', '电梯',"电表"],"series":[{"name":"在线数","data":[8,6,3,7,5,4,0]},{"name":"离线数","data":[1,0,0,0,0,0,3]}]}
   },
 }
 

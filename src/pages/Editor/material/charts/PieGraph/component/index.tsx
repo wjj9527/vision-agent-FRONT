@@ -16,21 +16,14 @@ interface ElementProps {
 
 interface DataType {
   style: object,
-  attribute: AttributeType
+  attribute: AttributeType,
+  datasource:any
 }
 
 const PieGraph: React.FC<ElementProps> = ({ id, label, data }) => {
   const chartRef = useRef(null);
-  const { style, attribute } = data;
-  const series = [
-    { 'name': '设备故障', 'value': 193 },
-    { 'name': '设备离线 ', 'value': 0 },
-    { 'name': '数值报警1', 'value': 65, },
-    { 'name': '数值报警2', 'value': 55, },
-    { 'name': '数值报警3', 'value': 75, },
-    { 'name': '数值报警4', 'value': 95, },
-    { 'name': '数值报警5', 'value': 65, },
-    { 'name': '开关报警6', 'value': 78 }];
+  const { style, attribute,datasource } = data;
+  const series = JSON.parse(JSON.stringify(datasource));
   const chartSettingAction = () => {
     if (!chartRef.current) {
       return;
