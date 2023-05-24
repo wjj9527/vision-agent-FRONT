@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, } from 'react';
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
 import * as echarts from 'echarts';
 import './style.less';
@@ -24,13 +24,14 @@ const PieGraph: React.FC<ElementProps> = ({ id, label, data }) => {
   const chartRef = useRef(null);
   const { style, attribute,datasource } = data;
   const series = JSON.parse(JSON.stringify(datasource));
+  let resizeFn:any = null
   const chartSettingAction = () => {
     if (!chartRef.current) {
       return;
     }
     const { chartType, dataTag, legendLayout, legendVisible, legendX, legendY, title } = attribute;
     const chart = echarts.init(chartRef.current);
-    let data = null
+    let data
     if(chartType==='rosePie'){
       const source = [...series]
       source.sort((a,b)=>a.value-b.value)
@@ -69,9 +70,16 @@ const PieGraph: React.FC<ElementProps> = ({ id, label, data }) => {
         },
       ],
     },true);
+    resizeFn = ()=>{
+      chart.resize()
+    }
+    window.addEventListener('resize', resizeFn);
   };
   useEffect(() => {
     chartSettingAction();
+    return ()=>{
+      window.removeEventListener('resize', resizeFn);
+    }
   }, [attribute]);
   return <ElementBody className={{'chart-wrapper':true}} id={id} label={label} style={style}>
     <div className='chart-container' ref={chartRef}/>

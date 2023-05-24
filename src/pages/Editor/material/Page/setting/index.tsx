@@ -17,6 +17,6 @@ const settingProps =[
   },
 ]
 const Setting:React.FC = ()=>{
-  return <SettingWrapper options={settingProps}/>
+  return <SettingWrapper options={settingProps} id={'0'}/>
 }
 export default Setting

@@ -10,7 +10,6 @@ interface IProps {
   id:string
 }
 const ChildrenSetting: React.FC<IProps> = ({id}) => {
-  console.log(id,'sasasasa')
   const { state, dispatch } = useContext(StoreContext);
   const targetId = id||state.renderTree.targetElementCheckedKey;
   const pluginSettingChildItemIsCanMoveStatus = state.plugin.pluginSettingChildItemIsCanMoveStatus
@@ -20,7 +19,6 @@ const ChildrenSetting: React.FC<IProps> = ({id}) => {
   //当前容器新增子集
   const appendChildContainer = () => {
     const uuid = createUUID();
-
     dispatch(
       {
         type: TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT,

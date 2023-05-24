@@ -21,8 +21,8 @@ interface DataType {
 const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
   const chartRef = useRef(null);
   let chart:any = null
+  let resizeFn:any = null
   const { style, attribute ,datasource} = data;
-
   const chartSettingAction = () => {
     const dataSource = JSON.parse(JSON.stringify(datasource))
     if (!chartRef.current) {
@@ -160,10 +160,6 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
         return item
       })
     }
-    if (chart) {
-      chart.dispose()
-      alert()
-    }
     chart = echarts.init(chartRef.current);
     chart.setOption({
       yAxis,
@@ -173,9 +169,16 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
       title:titleObj,
       series
     },true);
+    resizeFn = ()=>{
+      chart.resize()
+    }
+    window.addEventListener('resize', resizeFn);
   };
   useEffect(() => {
     chartSettingAction();
+    return ()=>{
+      window.removeEventListener('resize', resizeFn);
+    }
   }, [attribute,datasource]);
 
   return <ElementBody className={{'chart-wrapper':true}} id={id} label={label} style={style}>

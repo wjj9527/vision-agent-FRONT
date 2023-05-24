@@ -10,7 +10,6 @@ const LayoutSetting:React.FC<IProps> = ({id})=>{
   const {state,} = useContext(StoreContext)
   const targetKey = id||state.renderTree.targetElementCheckedKey
   return <>
-    {/*<LayoutBlock id={targetKey}/>*/}
     <MarginAndPaddingBlock id={targetKey}/>
     <WidthAndHeightBlock id={targetKey}/>
   </>
