@@ -70,7 +70,6 @@ const BarGraph: React.FC<ElementProps> = ({ id, label, data }) => {
     let xAxis = {
       type: 'category',// y轴类型为数值型
       name: offsetXTitle,
-
       //@ts-ignore
       data: dataSource?.data||null,
       splitLine: {
