@@ -22,7 +22,7 @@
   .children-setting-scroll-content{
     flex: 1;
     overflow: auto;
-    padding: 0 @paddingSM @paddingSM @paddingSM;
+    padding: @paddingSM @paddingSM @paddingSM @paddingSM;
   }
   .children-setting-item{
     border: 1px solid #dddddd;
@@ -33,6 +33,7 @@
     .item-content{
       padding: @paddingSM;
       overflow: hidden;
+      min-height: 400px;
       &.is-collapse{
         display: none;
       }

@@ -4,18 +4,20 @@ import LayoutSettingBlock from '@/pages/Editor/material/components/LayoutSetting
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import classNames from 'classnames';
 import Dnd from '../Dnd'
+import {setting} from '@/pages/Editor/material/index'
 const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock} = LayoutSettingBlock
 interface IProps {
   item: {
     id:string,
     label:string,
-    type:string
+    type:string,
+    value:string
   },
   collapse:boolean
 }
 
 const Item: React.FC<IProps> = ({ item ,}) => {
-  const { id, label } = item;
+  const { id, label,value } = item;
   const [labelText, setLabelText] = useState<string>('');
   const inputRef = useRef(null);
   const { state,dispatch } = useContext(StoreContext);
@@ -69,6 +71,8 @@ const Item: React.FC<IProps> = ({ item ,}) => {
   const contentClassNames = classNames('item-content',{
     'is-collapse':collapseStatus
   })
+  //@ts-ignore
+  const Setting = setting[value]||(()=><></>)
   const itemElement = (<div className='children-setting-item'>
     <div className='item-title'>
       <div className='title-text'>
@@ -116,9 +120,10 @@ const Item: React.FC<IProps> = ({ item ,}) => {
       </div>
     </div>
     <div className={contentClassNames}>
-      <LayoutBlock id={id}/>
-      <MarginAndPaddingBlock id={id}/>
-      <WidthAndHeightBlock id={id}/>
+      {/*<LayoutBlock id={id}/>*/}
+      {/*<MarginAndPaddingBlock id={id}/>*/}
+      {/*<WidthAndHeightBlock id={id}/>*/}
+      <Setting id={id}/>
     </div>
   </div>)
   return pluginSettingChildItemIsCanMoveStatus?<Dnd id={id}>

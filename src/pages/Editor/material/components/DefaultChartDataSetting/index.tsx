@@ -5,13 +5,15 @@ import './style.less'
 import { findContainerById } from '@/pages/utils/findContainerById';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import {Button} from 'antd'
-// console.log(JSONEditor)
-const DefaultChartDataSetting:React.FC = ()=>{
+interface IProps {
+  id:string
+}
+const DefaultChartDataSetting:React.FC<IProps> = ({id})=>{
   const editorRef = useRef(null)
   const {state,dispatch} = useContext(StoreContext)
   const {schema,targetElementCheckedKey} = state.renderTree
   //@ts-ignore
-  const datasource = findContainerById(targetElementCheckedKey,schema)?.element?.data?.datasource||{}
+  const datasource = findContainerById(id||targetElementCheckedKey,schema)?.element?.data?.datasource||{}
   let editor:any = null
 
   const editorSetting = ()=>{
@@ -24,7 +26,7 @@ const DefaultChartDataSetting:React.FC = ()=>{
   const handleUpdate = ()=>{
     if (editor) {
       const json = editor.get()
-      dispatch({type:TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID,id:targetElementCheckedKey,data:{datasource:json}})
+      dispatch({type:TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID,id:id||targetElementCheckedKey,data:{datasource:json}})
     }
   }
   useEffect(()=>{

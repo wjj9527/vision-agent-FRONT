@@ -1,9 +1,11 @@
 import React from 'react';
 import DefaultChartDataSetting from '@/pages/Editor/material/components/DefaultChartDataSetting';
-
-const DataSetting:React.FC = ()=>{
+interface IProps {
+  id:string
+}
+const DataSetting:React.FC<IProps> = ({id})=>{
   return <>
-    <DefaultChartDataSetting/>
+    <DefaultChartDataSetting id={id}/>
   </>
 }
 export default DataSetting

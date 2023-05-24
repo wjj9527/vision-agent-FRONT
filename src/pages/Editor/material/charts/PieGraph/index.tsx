@@ -1,8 +1,8 @@
 import component from './component'
 import defaultValue from './defaultValue';
-import Setting from './setting'
+import setting from './setting'
 export default {
   component,
-  Setting:<Setting/>,
+  setting,
   defaultValue
 }

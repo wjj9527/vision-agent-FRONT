@@ -3,12 +3,16 @@ import LayoutSettingBlock from '@/pages/Editor/material/components/LayoutSetting
 import { StoreContext } from '@/pages/Editor/store';
 const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock} = LayoutSettingBlock
 
-export default ()=>{
+interface IProps {
+  id:string
+}
+const LayoutSetting:React.FC<IProps> = ({id})=>{
   const {state,} = useContext(StoreContext)
-  const id = state.renderTree.targetElementCheckedKey
+  const targetKey = id||state.renderTree.targetElementCheckedKey
   return <>
-    <LayoutBlock id={id}/>
-    <MarginAndPaddingBlock id={id}/>
-    <WidthAndHeightBlock id={id}/>
+    <LayoutBlock id={targetKey}/>
+    <MarginAndPaddingBlock id={targetKey}/>
+    <WidthAndHeightBlock id={targetKey}/>
   </>
 }
+export default LayoutSetting

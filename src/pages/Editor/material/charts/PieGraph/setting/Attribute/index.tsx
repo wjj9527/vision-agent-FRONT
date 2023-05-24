@@ -24,7 +24,6 @@ const Attribute:React.FC<IProps> = ({id})=>{
   useEffect(()=>{
     // @ts-ignore
     setDefaultValue(findContainerById(currentTargetId,state.renderTree.schema)?.element?.data?.attribute||{})
-    console.log(defaultValue)
   },[currentTargetId])
   //@ts-ignore
   const setSchemaData = (e: string|boolean|Array, type: keyof defaultValue|string)=>{

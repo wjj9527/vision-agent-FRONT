@@ -26,11 +26,11 @@ interface pluginType{
 
 //setting组件集
 const setting = {
-  BasicContainer:BasicContainer.Setting,
-  CardGroup:CardGroup.Setting,
-  BarGraph:BarGraph.Setting,
-  PieGraph:PieGraph.Setting,
-  LineGraph:LineGraph.Setting
+  BasicContainer:BasicContainer.setting,
+  CardGroup:CardGroup.setting,
+  BarGraph:BarGraph.setting,
+  PieGraph:PieGraph.setting,
+  LineGraph:LineGraph.setting
 }
 
 //渲染组件集

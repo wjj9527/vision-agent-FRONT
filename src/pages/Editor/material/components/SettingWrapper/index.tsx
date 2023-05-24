@@ -3,15 +3,16 @@ import './style.less'
 export interface SettingOption {
   label:string;
   value:string;
-  component:React.FC
+  component:React.FC|any
 }
 
 export interface IProps {
-  options:SettingOption[]
+  options:SettingOption[],
+  id:string
 }
 
-const Setting:React.FC<IProps>=(props)=>{
-  const {options} = props
+const Setting:React.FC<IProps>=({options,id})=>{
+
   const [defaultItem] = options
   const [targetItem,setTargetItem] = useState<SettingOption>(defaultItem)
   const toggleGroup = options.map(item=>(
@@ -26,7 +27,8 @@ const Setting:React.FC<IProps>=(props)=>{
     </div>
     <div className='view-content'>
       <div className='view-scroll-inner'>
-        <Content/>
+        {/*@ts-ignore*/}
+        <Content id={id}/>
       </div>
     </div>
   </div>

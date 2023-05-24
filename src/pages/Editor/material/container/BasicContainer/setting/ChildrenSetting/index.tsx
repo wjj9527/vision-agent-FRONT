@@ -6,11 +6,13 @@ import './style.less';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { createUUID } from '@/pages/utils';
 import { findContainerById } from '@/pages/utils/findContainerById';
-
-
-const ChildrenSetting: React.FC = () => {
+interface IProps {
+  id:string
+}
+const ChildrenSetting: React.FC<IProps> = ({id}) => {
+  console.log(id,'sasasasa')
   const { state, dispatch } = useContext(StoreContext);
-  const targetId = state.renderTree.targetElementCheckedKey;
+  const targetId = id||state.renderTree.targetElementCheckedKey;
   const pluginSettingChildItemIsCanMoveStatus = state.plugin.pluginSettingChildItemIsCanMoveStatus
   const schema = state.renderTree.schema;
   const { element } = findContainerById(targetId, schema);
@@ -78,19 +80,22 @@ const ChildrenSetting: React.FC = () => {
     label: <span onClick={appendChildElement}>组件块</span>,
   }];
   return <div className='children-setting'>
-    <div className='btn-group'>
-      <Dropdown menu={{items:menuItems}} disabled={pluginSettingChildItemIsCanMoveStatus}>
-        <Button type='primary' className='btn' >新增</Button>
-      </Dropdown>
-      {/*<Button type='primary' className='btn' onClick={handleMoveActive} ghost>排列</Button>*/}
-      {
-        !pluginSettingChildItemIsCanMoveStatus?(
-          <Button type='primary' className='btn' onClick={handleMoveActive} ghost>排列</Button>
-        ):(
-          <Button type='primary' className='btn' onClick={handleMoveCancel} ghost>取消排列</Button>
-        )
-      }
-    </div>
+    {
+      !id&&(<div className='btn-group'>
+        <Dropdown menu={{items:menuItems}} disabled={pluginSettingChildItemIsCanMoveStatus}>
+          <Button type='primary' className='btn' >新增</Button>
+        </Dropdown>
+        {/*<Button type='primary' className='btn' onClick={handleMoveActive} ghost>排列</Button>*/}
+        {
+          !pluginSettingChildItemIsCanMoveStatus?(
+            <Button type='primary' className='btn' onClick={handleMoveActive} ghost>排列</Button>
+          ):(
+            <Button type='primary' className='btn' onClick={handleMoveCancel} ghost>取消排列</Button>
+          )
+        }
+      </div>)
+    }
+
     <div className='children-setting-scroll-content'>
       <div className='children-setting-scroll-inner-view' ref={scrollContainerRef}>
         {/*@ts-ignore*/}

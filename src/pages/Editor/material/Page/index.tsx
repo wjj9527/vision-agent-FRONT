@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import './style.less';
-import { StoreContext,  } from '@/pages/Editor/store';
+import { StoreContext,} from '@/pages/Editor/store';
 import { component } from '../index';
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
 
 interface TreeProps {
   label: string,
-  type: 'page' | 'container' | 'component',
+  type: string,
+  value: string,
   id: string | number | symbol | null | undefined,
   data?: any,
   children: TreeProps[]
@@ -14,7 +15,6 @@ interface TreeProps {
 
 const renderTreeAction: React.FC<TreeProps> = (tree) => {
   let context = null;
-  // console.log(tree.label)
   if (tree?.children) {
     context = tree?.children?.map(item=>{
       // @ts-ignore
@@ -27,7 +27,7 @@ const renderTreeAction: React.FC<TreeProps> = (tree) => {
   </>
 };
 const Page: React.FC = () => {
-  const { state, dispatch } = useContext(StoreContext);
+  const { state} = useContext(StoreContext);
   const style = state.renderTree.schema.data.style
 
   const classNames = {

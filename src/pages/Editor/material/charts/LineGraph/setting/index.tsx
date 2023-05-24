@@ -21,7 +21,10 @@ const settingProps = [
     component:DataSetting
   },
 ]
-const Setting:React.FC = ()=>{
-  return <SettingWrapper options={settingProps}/>
+interface IProps {
+  id:string
+}
+const Setting:React.FC<IProps> = ({id})=>{
+  return <SettingWrapper options={settingProps} id={id}/>
 }
 export default Setting
