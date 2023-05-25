@@ -14,11 +14,9 @@ interface DraggableAndDroppableProps {
   data:DataType
 }
 
-const EmptyFill =()=>{
-  return <div className='empty-fill'>
-    拖拽组件或容器到这里
-  </div>
-}
+const emptyFill =<div className='empty-fill'>
+  拖拽组件或容器到这里
+</div>
 
 const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
   const {id,children,data,label} = props
@@ -30,7 +28,7 @@ const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
   return (
     <ElementBody className={classNameList} style={style} id={id} label={label} type={'BasicContainer'}  handleActions={['insert','copy','delete']}>
       {/*@ts-ignore*/}
-      {children.props.children?.length?children:<EmptyFill/>}
+      {children?.props?.children?.length?children:emptyFill}
     </ElementBody>
 
   );

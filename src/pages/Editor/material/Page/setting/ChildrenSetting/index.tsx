@@ -1,11 +1,9 @@
 import React from 'react';
 import ChildrenSettingBlock from '@/pages/Editor/material/components/ChildrenSetting';
-interface IProps {
-  id:string
-}
-const ChildrenSetting: React.FC<IProps> = ({id}) => {
+
+const ChildrenSetting: React.FC = () => {
   return <>
-    <ChildrenSettingBlock id={id}/>
+    <ChildrenSettingBlock id={'0'}/>
   </>
 };
 
