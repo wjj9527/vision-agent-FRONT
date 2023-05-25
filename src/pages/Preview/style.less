@@ -1,0 +1,24 @@
+.preview-container-body{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  .preview-header{
+    height: 64px;
+  }
+  .preview-content{
+    display: flex;
+    flex: 1;
+    height: calc(100% - 64px);
+    .preview-menu-content{
+      height: 100%;
+    }
+    .preview-view{
+      flex: 1;
+      background: #eaeaea;
+    }
+  }
+}

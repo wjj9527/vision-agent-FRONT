@@ -11,4 +11,8 @@ export default [
     path: '/',
     component: '@/pages/Login',
   },
+  {
+    path: '/preview/:id',
+    component: '@/pages/Preview',
+  },
 ]
