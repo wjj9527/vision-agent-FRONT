@@ -28,7 +28,6 @@ const MenuList: React.FC = () => {
           type:Number(type)===1?'sub':null
         }
       })
-      console.log(items)
       setItems(items)
     })
   }
