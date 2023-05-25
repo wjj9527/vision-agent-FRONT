@@ -3,7 +3,7 @@ import '../style.less';
 import { Select,} from 'antd';
 import { TYPES } from '@/pages/Editor/store';
 import { findContainerById } from '@/pages/utils/findContainerById';
-import { flexGrowOptions, overflowOptions } from '../params';
+import { overflowOptions,} from '../params';
 import { StoreContext } from '@/pages/Editor/store';
 
 interface LayoutSettingBlockProps {
@@ -14,11 +14,8 @@ const OverflowBlock: React.FC<LayoutSettingBlockProps> = ({ id }) => {
   const { state, dispatch } = useContext(StoreContext);
   //若有ID则采用当前ID对应数据，反之采用targetId
   const currentTargetId = id || state.renderTree.targetElementCheckedKey;
-
-  const {element,parent} = findContainerById(currentTargetId, state.renderTree.schema)
   // @ts-ignore
-  const parentElementDisplayFlexStatus = parent?.data.style?.display === 'flex'
-  const currentElement = element?.data?.style || {};
+  const currentElement = findContainerById(currentTargetId, state.renderTree.schema)?.element?.data?.style || {};
   const [defaultValue, setDefaultValue] = useState<any>(currentElement);
 
   useEffect(() => {
@@ -34,21 +31,32 @@ const OverflowBlock: React.FC<LayoutSettingBlockProps> = ({ id }) => {
     dispatch({ type: TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID, id: currentTargetId, data: { style: props } });
   };
 
-  return parentElementDisplayFlexStatus?<div className='layout-setting-block'>
+  return <div className='layout-setting-block'>
     <div className='height-width-group'>
       <div className='layout-select-block-item'>
-        <div className='label'>剩余填充</div>
+        <div className='label'>水平滚动</div>
         <div className='content'>
           <Select
             className='select'
-            value={defaultValue.flexGrow}
+            value={defaultValue.overflowX}
             placeholder='请选择水平滚动方式'
-            options={flexGrowOptions}
-            onChange={(e) => setSchemaData(e, 'flexGrow')} />
+            options={overflowOptions}
+            onChange={(e) => setSchemaData(e, 'overflowX')} />
+        </div>
+      </div>
+      <div className='layout-select-block-item'>
+        <div className='label'>垂直滚动</div>
+        <div className='content'>
+          <Select
+            className='select'
+            value={defaultValue.overflowY}
+            placeholder='请选择垂直滚动方式'
+            options={overflowOptions}
+            onChange={(e) => setSchemaData(e, 'overflowY')} />
         </div>
       </div>
     </div>
-  </div>:<></>;
+  </div>;
 };
 
 export default OverflowBlock;

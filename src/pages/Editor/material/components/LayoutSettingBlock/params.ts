@@ -146,3 +146,29 @@ export const valueSettingOptions:SelectOption[] = [
     value:'%'
   },
 ]
+
+export const overflowOptions:SelectOption[] =[
+  {
+    label:'隐藏',
+    value:'hidden'
+  },
+  {
+    label:'自动',
+    value:'auto'
+  },
+  {
+    label:'滚动',
+    value:'scroll'
+  },
+]
+
+export const flexGrowOptions:SelectOption[] =[
+  {
+    label:'不填充',
+    value:'0'
+  },
+  {
+    label:'填充',
+    value:'1'
+  },
+]

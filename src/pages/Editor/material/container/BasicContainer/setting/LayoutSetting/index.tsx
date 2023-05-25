@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import LayoutSettingBlock from '@/pages/Editor/material/components/LayoutSettingBlock';
 import { StoreContext } from '@/pages/Editor/store';
-const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock} = LayoutSettingBlock
+const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock,OverflowBlock,FlexBlock} = LayoutSettingBlock
 
 interface IProps {
   id:string
@@ -13,6 +13,8 @@ const LayoutSetting:React.FC<IProps> = ({id})=>{
     <LayoutBlock id={targetKey}/>
     <MarginAndPaddingBlock id={targetKey}/>
     <WidthAndHeightBlock id={targetKey}/>
+    <OverflowBlock id={targetKey}/>
+    <FlexBlock id={targetKey}/>
   </>
 }
 export default LayoutSetting

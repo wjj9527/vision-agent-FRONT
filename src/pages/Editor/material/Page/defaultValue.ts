@@ -23,6 +23,8 @@ export default {
       height: null,
       widthPrefix: 'px',
       heightPrefix: 'px',
+      overflowX:'auto',
+      overflowY:'auto',
     },
   },
   children:[]
