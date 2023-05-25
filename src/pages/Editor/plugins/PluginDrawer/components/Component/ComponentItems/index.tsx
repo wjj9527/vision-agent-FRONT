@@ -1,5 +1,5 @@
 import React, { useContext,useState } from 'react';
-import { Drawer, Button, Input } from 'antd';
+import {Input } from 'antd';
 import './style.less';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { plugin, getDefaultElementData, pluginType, pluginItemType } from '@/pages/Editor/material';
@@ -8,23 +8,17 @@ import type { ElementType } from '@/pages/Editor/Types';
 const { Search } = Input;
 const ElementSelection: React.FC = () => {
   const { state, dispatch } = useContext(StoreContext);
-  const { pluginDrawerElementSelectionVisible } = state.plugin;
   const { targetElementCheckedKey } = state.renderTree;
   const [pluginList,setPluginList] = useState(plugin)
-  const handleClose = () => {
-    dispatch({ type: TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS, value: false });
-  };
+
   const handleCreateElement = (item: ElementType) => {
-    // console.log(item)
+
     //@ts-ignore
     const pushValue = getDefaultElementData(item.value);
     dispatch({
       type: TYPES.RENDER_TREE_INSERT_TO_PARENT_ELEMENT,
       value: { pushValue, targetId: targetElementCheckedKey },
     });
-    setTimeout(()=>{
-      console.log(state.renderTree.schema)
-    },100)
   };
 
   const handleSearch = (text:string)=>{
