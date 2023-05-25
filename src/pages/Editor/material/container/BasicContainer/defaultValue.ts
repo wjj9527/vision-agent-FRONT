@@ -4,6 +4,7 @@ const defaultValue:ElementType = {
   type: 'container',
   value:'BasicContainer',
   id:'',
+  icon:'icon-m-lierongqi',
   data: {
     style: {
       display: 'block',

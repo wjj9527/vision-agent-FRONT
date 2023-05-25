@@ -4,6 +4,7 @@ const defaultValue:ElementType = {
   type: 'container',
   value:'CardGroup',
   id:'',
+  icon:'icon-qiapianshuliang',
   data: {
     style: {
       display: 'block',

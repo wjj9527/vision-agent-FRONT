@@ -23,6 +23,7 @@ export type ElementType = {
   type:string|undefined|null,
   value:string,
   id:string,
+  icon?:string,
   data:{
     style?:StyleType,
     data?:any,

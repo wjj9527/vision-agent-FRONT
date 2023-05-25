@@ -59,7 +59,7 @@ const plugin:pluginType[] = [
         label:'基础容器',
         value:'BasicContainer',
         searchEKEY:'JCRQ',
-        icon:'icon-yemiankuangjia_o',
+        icon:BasicContainer.defaultValue.icon,
         component:BasicContainer.component
       }
     ]
@@ -72,7 +72,7 @@ const plugin:pluginType[] = [
         label:'卡片组',
         value:'CardGroup',
         searchEKEY:'KPZ',
-        icon:'icon-yemiankuangjia_o',
+        icon:CardGroup.defaultValue.icon,
         component:CardGroup.component
       }
     ]
@@ -85,21 +85,21 @@ const plugin:pluginType[] = [
         label:'柱状图',
         value:'BarGraph',
         searchEKEY:'ZZT',
-        icon:'icon-yemiankuangjia_o',
+        icon:BarGraph.defaultValue.icon,
         component:BarGraph.component
       },
       {
         label:'饼状图',
         value:'PieGraph',
         searchEKEY:'BZT',
-        icon:'icon-yemiankuangjia_o',
+        icon:PieGraph.defaultValue.icon,
         component:PieGraph.component
       },
       {
         label:'折线图',
         value:'LineGraph',
         searchEKEY:'ZXT',
-        icon:'icon-yemiankuangjia_o',
+        icon:LineGraph.defaultValue.icon,
         component:LineGraph.component
       }
     ]

@@ -3,6 +3,7 @@ export default {
   type:'page',
   id:'0',
   value:'Page',
+  icon:'icon-yemian',
   data: {
     style: {
       display: 'block',

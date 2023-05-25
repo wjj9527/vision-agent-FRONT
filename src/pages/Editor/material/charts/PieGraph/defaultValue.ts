@@ -5,6 +5,7 @@ const defaultValue:ElementType = {
   type: 'PieGraph',
   value:'PieGraph',
   id:'',
+  icon:'icon-pie',
   data: {
     style: {
       display: 'block',

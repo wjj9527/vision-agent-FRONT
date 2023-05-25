@@ -17,6 +17,8 @@ const TopBtnGroup:React.FC = ()=>{
     })
   }
   return <div className="top-btn-group">
+    <Button  type="primary" onClick={handleSaveSchema} style={{marginRight:8}} ghost>预览</Button>
+
     <Button  type="primary" onClick={handleSaveSchema}>保存</Button>
     <div className='fold-btn' onClick={dispatch.bind(this,{type:TYPES.UPDATE_PLUGIN_SETTING_FOLD,value:!foldStatus})}>
       {btnIcon}

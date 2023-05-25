@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode,} from 'react';
 import './style.less'
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
 interface DataType {
@@ -26,7 +26,7 @@ const BasicContainer:React.FC<DraggableAndDroppableProps> = (props) => {
     'basic-container':true,
   }
   return (
-    <ElementBody className={classNameList} style={style} id={id} label={label} type={'BasicContainer'}  handleActions={['insert','copy','delete']}>
+    <ElementBody className={classNameList} style={style} id={id} label={label} type={'BasicContainer'}  handleActions={['update','insert','copy','delete']}>
       {/*@ts-ignore*/}
       {children?.props?.children?.length?children:emptyFill}
     </ElementBody>

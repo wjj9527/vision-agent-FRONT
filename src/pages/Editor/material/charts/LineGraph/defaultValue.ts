@@ -5,6 +5,7 @@ const defaultValue:ElementType = {
   type: 'LineGraph',
   value:'LineGraph',
   id:'',
+  icon:'icon-zhexiantu',
   data: {
     style: {
       display: 'block',

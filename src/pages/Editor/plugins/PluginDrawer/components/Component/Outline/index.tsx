@@ -2,6 +2,7 @@ import { Input, Tree } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import {StoreContext,TYPES} from '@/pages/Editor/store'
 import type { TreeProps } from 'antd/es/tree';
+import './style.less'
 const { Search } = Input;
 
 
@@ -13,19 +14,13 @@ interface DataNode {
 }
 
 const dataFormat = (tree:any)=>{
-  let {label,id,type,children} = tree
-
-  // @ts-ignore
-  const icon = {
-    page:<i className='iconfont icon-yemiankuangjia_o'/>,
-    container:<i className='iconfont icon-m-lierongqi'/>,
-    component:<i className='iconfont icon-zujian'/>
-  }[type]
+  let {label,id,children,icon} = tree
   const title = label
   const key = id
   if (!!children||children?.length) {
     children = children.map((item: any)=>dataFormat(item))
   }
+  icon = <i className={`iconfont ${icon} menu-outline-icon`}/>
   return {title,key,children,icon}
 }
 

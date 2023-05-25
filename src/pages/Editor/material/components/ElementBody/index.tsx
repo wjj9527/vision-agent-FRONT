@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { StyleType } from '@/pages/Editor/Types';
 import classNames from 'classnames';
 import { CSSFormat } from '@/pages/utils/CSSFormat';
@@ -10,7 +10,7 @@ interface ClassNameType {
   [key: string]: boolean
 }
 
-type HandleType = 'copy'|'delete'|'insert'
+type HandleType = 'copy'|'delete'|'insert'|'update'
 
 interface ElementBodyProps {
   style?: StyleType | {},
@@ -22,14 +22,16 @@ interface ElementBodyProps {
   type?:string
 }
 
-const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, children, id, handleActions=['copy','delete'],type }) => {
+const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, children, id, handleActions=['update','copy','delete'],type }) => {
   const { state, dispatch } = useContext(StoreContext);
+  const [editStatus,setEditStatus] = useState(false)
+  const [labelText,setLabelText] = useState(label)
+  const inputRef = useRef(null)
   let classNamesList = classNames('badge-body', className, {
     'active': state.renderTree.targetElementCheckedKey === id,
   });
   const handleTargetElementSetting = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    console.log(id);
     dispatch({ type: TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY, value: id });
   };
   const handleDeleteElement = () => {
@@ -49,6 +51,26 @@ const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, chil
   const handleInsertElement =()=>{
     dispatch({ type: TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS, value:true });
   }
+  const handleUpdateElement =()=>{
+    setEditStatus(true)
+  }
+  const handleUpdateElementSave =()=>{
+    if (!labelText) {
+      setEditStatus(false)
+      setLabelText(label)
+      message.error('组件名称不能为空');
+      return;
+    }
+    dispatch({ type: TYPES.RENDER_TREE_UPDATE_ELEMENT_LABEL_BY_ID, id, label: labelText, callback:setEditStatus.bind(this,false) });
+  }
+  const handleEditInput =(e:React.ChangeEvent<HTMLInputElement>)=>{
+    setLabelText(e.target.value)
+  }
+  const updateElementJSX = (<div className='handle-item' key="update">
+    <Tooltip placement='top' title={editStatus?'保存':'编辑'}>
+      {!editStatus?<i className='iconfont icon-editor' onClick={handleUpdateElement} />:<i className='iconfont icon-baocun' onClick={handleUpdateElementSave} />}
+    </Tooltip>
+  </div>)
   const insertElementJSX = (<div className='handle-item' key="insert">
     <Tooltip placement='top' title='创建子元素'>
       <i className='iconfont icon-xinzeng' onClick={handleInsertElement} />
@@ -65,6 +87,7 @@ const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, chil
     </Tooltip>
   </div>)
   const handleActionsElements = {
+    update:updateElementJSX,
     insert:insertElementJSX,
     copy:copyElementJSX,
     delete:deleteElementJSX
@@ -73,9 +96,24 @@ const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, chil
   const handleGroupList:JSX.Element[] = handleActions.map(key=>{
     return handleActionsElements[key]
   })
+  useEffect(()=>{
+    setLabelText(label)
+  },[label])
+  useEffect(()=>{
+    if (editStatus) {
+      setTimeout(()=>{
+        if (inputRef.current) {
+          //@ts-ignore
+          inputRef.current?.focus()
+        }
+      })
+    }
+  },[editStatus])
   return <div style={CSSFormat(style||{})} className={classNamesList} onClick={handleTargetElementSetting}>
     <div className='badge-content'>
-      <div className='label'>{label}</div>
+      {
+        editStatus?(<div className='label'><input type='text' ref={inputRef} className="label-input" value={labelText} onInput={handleEditInput} /></div>):(<div className='label'>{label}</div>)
+      }
       <div className='handle-group'>
         {handleGroupList}
       </div>

@@ -5,6 +5,7 @@ const defaultValue:ElementType = {
   type: 'BarGraph',
   value:'BarGraph',
   id:'',
+  icon:'icon-tiaoxingtu',
   data: {
     style: {
       display: 'block',

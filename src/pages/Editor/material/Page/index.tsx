@@ -35,7 +35,7 @@ const Page: React.FC = () => {
     'dnd-container':true
   };
   return (
-    <ElementBody style={style} id={'0'} className={classNames} label={'页面'} handleActions={['insert']}>
+    <ElementBody style={style} id={'0'} className={classNames} label={'页面'} handleActions={['update','insert']}>
       {renderTreeAction(state.renderTree.schema)}
     </ElementBody>
   );

@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Popconfirm, message, Tooltip } from 'antd';
-import LayoutSettingBlock from '@/pages/Editor/material/components/LayoutSettingBlock';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import classNames from 'classnames';
 import Dnd from '../Dnd'
-import {setting} from '@/pages/Editor/material/index'
-const {LayoutBlock,MarginAndPaddingBlock,WidthAndHeightBlock} = LayoutSettingBlock
+import {setting} from '@/pages/Editor/material'
 interface IProps {
   item: {
     id:string,
