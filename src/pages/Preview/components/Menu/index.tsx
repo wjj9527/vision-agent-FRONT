@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { menuListGetting } from '@/http/api/editor';
+import { getPageSchema, menuListGetting } from '@/http/api/editor';
+import {useHistory,useParams} from 'react-router-dom'
+import { StoreContext, TYPES } from '@/pages/Editor/store';
 
 const MenuList: React.FC = () => {
   const [items,setItems] = useState<MenuProps['items']>([])
+  const history = useHistory()
+  const {dispatch} = useContext(StoreContext)
+  const params = useParams()
   const getMenuListSource =()=>{
     menuListGetting().then(res=>{
       const {data} = res
@@ -31,23 +36,36 @@ const MenuList: React.FC = () => {
       setItems(items)
     })
   }
+  const getSchemaSource = (menuId:string)=>{
+    getPageSchema({menuId}).then(res=>{
+      const {schema} = res.data
+      dispatch({type:TYPES.RENDER_TREE_SCHEMA_REPLACE,value:JSON.parse(schema)})
+    })
+  }
   useEffect(()=>{
     getMenuListSource()
   },[])
+  useEffect(()=>{
+    if (params) {
+      //@ts-ignore
+      const {id} = params
+      getSchemaSource(id)
+    }
+  },[params])
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
+    history.replace(`/preview/${e.key}`)
   };
 
   return (
     <Menu
       onClick={onClick}
       style={{ width: 256 }}
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      selectedKeys={['2']}
+      defaultOpenKeys={['1']}
       mode="inline"
       items={items}
     />
   );
 };
 
-export default MenuList;
+export default MenuList

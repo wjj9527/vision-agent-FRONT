@@ -1,6 +1,8 @@
 import React from 'react';
 import './style.less'
 import MenuList from '@/pages/Preview/components/Menu';
+import {Store} from '@/pages/Editor/store';
+import Page from '@/pages/Editor/material/Page'
 const Preview:React.FC =()=>{
   return <div className="preview-container-body">
     <div className='preview-header'></div>
@@ -9,10 +11,14 @@ const Preview:React.FC =()=>{
         <MenuList/>
       </div>
       <div className='preview-view'>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid autem ducimus facilis fugiat inventore quasi repellat! Adipisci alias animi dignissimos, eligendi molestias nemo quam quas sed tempora temporibus ullam velit!
+        <Page/>
       </div>
     </div>
   </div>
 }
 
-export default Preview
+export default ()=>{
+  return <Store>
+    <Preview/>
+  </Store>
+}

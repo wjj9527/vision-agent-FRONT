@@ -48,3 +48,20 @@
     }
   }
 }
+
+.preview-container-body{
+  .badge-content{
+    display: none !important;
+  }
+  .badge-body{
+    &:hover{
+      outline: 0px dashed @colorPrimary !important;
+      .badge-content{
+        display: none;
+      }
+    }
+    &.active{
+      outline: 0px solid @colorPrimary !important;
+    }
+  }
+}
