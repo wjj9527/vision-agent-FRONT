@@ -47,7 +47,6 @@ const Editor:React.FC=()=> {
           dispatch({type:TYPES.RENDER_TREE_SCHEMA_REPLACE,value:defaultValue})
         }
       })
-
     })
   },[])
   return (

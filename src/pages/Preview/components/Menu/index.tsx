@@ -9,6 +9,7 @@ const MenuList: React.FC = () => {
   const [items,setItems] = useState<MenuProps['items']>([])
   const history = useHistory()
   const {dispatch} = useContext(StoreContext)
+  const [selectKey,setSelectKey] = useState([])
   const params = useParams()
   const getMenuListSource =()=>{
     menuListGetting().then(res=>{
@@ -50,6 +51,8 @@ const MenuList: React.FC = () => {
       //@ts-ignore
       const {id} = params
       getSchemaSource(id)
+      //@ts-ignore
+      setSelectKey([id])
     }
   },[params])
   const onClick: MenuProps['onClick'] = (e) => {
@@ -60,8 +63,7 @@ const MenuList: React.FC = () => {
     <Menu
       onClick={onClick}
       style={{ width: 256 }}
-      selectedKeys={['2']}
-      defaultOpenKeys={['1']}
+      selectedKeys={selectKey}
       mode="inline"
       items={items}
     />

@@ -3,9 +3,11 @@ import './style.less';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { Button, message } from 'antd';
 import { updateCurrentTargetSchema } from '@/http/api/editor';
+import { useHistory } from 'react-router-dom';
 
 const TopBtnGroup: React.FC = () => {
   const { state, dispatch } = useContext(StoreContext);
+  const history = useHistory()
   const schema = state.renderTree.schema;
   const pluginPageDefaultData = state.plugin.pluginPageDefaultData;
   const foldStatus = state.plugin.pluginSettingFold;
@@ -18,8 +20,11 @@ const TopBtnGroup: React.FC = () => {
       message.success('保存成功');
     });
   };
+  const redirectToPreview =()=>{
+    history.push(`/preview/${pluginPageDefaultData.id}`)
+  }
   return <div className='top-btn-group'>
-    <Button type='primary' onClick={handleSaveSchema} style={{ marginRight: 8 }} ghost>预览</Button>
+    <Button type='primary' onClick={redirectToPreview} style={{ marginRight: 8 }} ghost>预览</Button>
 
     <Button type='primary' onClick={handleSaveSchema}>保存</Button>
     <div className='fold-btn'

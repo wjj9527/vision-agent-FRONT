@@ -1,5 +1,4 @@
 import TYPES from './types'
-import {menuListGetting} from '@/http/api/editor'
 export default {
   [TYPES.UPDATE_PLUGIN_DRAWER_TARGET]:(state:any,action:any)=>{
     state.plugin.pluginCurrentTarget = action.value
@@ -20,7 +19,6 @@ export default {
     state.plugin.pluginSettingChildItemIsCanMoveStatus = action.value
   },
   [TYPES.UPDATE_PLUGIN_DRAWER_ELEMENT_SELECTION_VISIBLE_STATUS]:(state:any,action:any)=>{
-    // console.log(action.value)
     state.plugin.pluginDrawerElementSelectionVisible = action.value
   },
   [TYPES.UPDATE_PLUGIN_DIALOG_CREATE_MENU_VISIBLE_STATUS]:(state:any,action:any)=>{
