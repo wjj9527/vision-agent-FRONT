@@ -7,5 +7,6 @@ export default defineConfig({
   },
   routes,
   fastRefresh: {},
-  theme
+  theme,
+  mock:{},
 });

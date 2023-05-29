@@ -7,7 +7,7 @@ import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { createUUID } from '@/pages/utils';
 import { findContainerById } from '@/pages/utils/findContainerById';
 interface IProps {
-  id:string
+  id?:string
 }
 const ChildrenSettingBlock: React.FC<IProps> = ({id}) => {
   const { state, dispatch } = useContext(StoreContext);

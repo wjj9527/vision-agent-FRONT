@@ -31,7 +31,13 @@ export type ElementType = {
     style?:StyleType,
     data?:any,
     attribute?:any,
-    datasource?:any
+    datasource?:any,
+    onlineXHR?:{
+      [key:string]:{
+        isInline?:false,
+        url?:string|null
+      }
+    }
   },
 }
 //antd select options

@@ -3,7 +3,7 @@ import ChildrenSettingBlock from '@/pages/Editor/material/components/ChildrenSet
 
 const ChildrenSetting: React.FC = () => {
   return <>
-    <ChildrenSettingBlock id={'0'}/>
+    <ChildrenSettingBlock/>
   </>
 };
 

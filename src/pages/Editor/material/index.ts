@@ -10,6 +10,8 @@ import BarGraph from '@/pages/Editor/material/charts/BarGraph';
 import PieGraph from '@/pages/Editor/material/charts/PieGraph'
 //折线图
 import LineGraph from '@/pages/Editor/material/charts/LineGraph'
+//报警表格
+import AlarmTable from '@/pages/Editor/material/system/AlarmTable'
 
 interface pluginItemType {
   label:string,
@@ -30,7 +32,8 @@ const setting = {
   CardGroup:CardGroup.setting,
   BarGraph:BarGraph.setting,
   PieGraph:PieGraph.setting,
-  LineGraph:LineGraph.setting
+  LineGraph:LineGraph.setting,
+  AlarmTable:AlarmTable.setting,
 }
 
 //渲染组件集
@@ -39,7 +42,8 @@ const component = {
   CardGroup:CardGroup.component,
   BarGraph:BarGraph.component,
   PieGraph:PieGraph.component,
-  LineGraph:LineGraph.component
+  LineGraph:LineGraph.component,
+  AlarmTable:AlarmTable.component,
 }
 //组件默认值集合
 const defaultValue = {
@@ -47,7 +51,8 @@ const defaultValue = {
   CardGroup:CardGroup.defaultValue,
   BarGraph:BarGraph.defaultValue,
   PieGraph:PieGraph.defaultValue,
-  LineGraph:LineGraph.defaultValue
+  LineGraph:LineGraph.defaultValue,
+  AlarmTable:AlarmTable.defaultValue,
 }
 //组件列表
 const plugin:pluginType[] = [
@@ -103,7 +108,20 @@ const plugin:pluginType[] = [
         component:LineGraph.component
       }
     ]
-  }
+  },
+  {
+    label:'系统组件',
+    value:'system',
+    items:[
+      {
+        label:'警报表格',
+        value:'AlarmTable',
+        searchEKEY:'JBBG',
+        icon:AlarmTable.defaultValue.icon,
+        component:AlarmTable.component
+      }
+    ]
+  },
 ]
 
 const getDefaultElementData = (type:keyof typeof defaultValue,props:object={})=>{
