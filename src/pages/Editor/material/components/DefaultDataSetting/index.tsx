@@ -6,27 +6,43 @@ import { findContainerById } from '@/pages/utils/findContainerById';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import {Button} from 'antd'
 interface IProps {
-  id:string
+  id:string,
+  module?:string
 }
-const DefaultChartDataSetting:React.FC<IProps> = ({id})=>{
+const DefaultDataSetting:React.FC<IProps> = ({id,module})=>{
   const editorRef = useRef(null)
   const {state,dispatch} = useContext(StoreContext)
   const {schema,targetElementCheckedKey} = state.renderTree
   //@ts-ignore
-  const datasource = findContainerById(id||targetElementCheckedKey,schema)?.element?.data?.datasource||{}
+  let datasource = findContainerById(id||targetElementCheckedKey,schema)?.element?.data?.datasource||{}
   let editor:any = null
 
   const editorSetting = ()=>{
     if (!editorRef.current) {
       return
     }
-    editor = new JSONEditor(editorRef.current);
-    editor.set(datasource)
+    editor = new JSONEditor(editorRef.current,{
+      // mode:'view',
+      // onChange:()=>false
+    });
+    let data = datasource
+    if(module){
+      data = datasource[module]
+    }
+    editor.set(data)
   }
   const handleUpdate = ()=>{
     if (editor) {
       const json = editor.get()
-      dispatch({type:TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID,id:id||targetElementCheckedKey,data:{datasource:json}})
+      let data
+      if(module){
+        let source = JSON.parse(JSON.stringify(datasource))
+        source[module] = json
+        data = source
+      }else{
+        data = datasource
+      }
+      dispatch({type:TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID,id:id||targetElementCheckedKey,data:{datasource:data}})
     }
   }
   useEffect(()=>{
@@ -35,11 +51,10 @@ const DefaultChartDataSetting:React.FC<IProps> = ({id})=>{
 
   return <>
     <div ref={editorRef} className="editor-container">
-
     </div>
     <div className='btn-wrapper'>
       <Button type="primary" onClick={handleUpdate}>更新</Button>
     </div>
   </>
 }
-export default DefaultChartDataSetting
+export default DefaultDataSetting

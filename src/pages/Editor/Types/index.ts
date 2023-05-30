@@ -34,7 +34,7 @@ export type ElementType = {
     datasource?:any,
     onlineXHR?:{
       [key:string]:{
-        isInline?:false,
+        isOnline?:false,
         url?:string|null
       }
     }

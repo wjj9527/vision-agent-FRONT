@@ -127,5 +127,25 @@ export default {
   },
   [TYPES.RENDER_TREE_SCHEMA_REPLACE]:(state:any,action:any)=>{
     state.renderTree.schema = action.value
+  },
+  [TYPES.RENDER_TREE_UPDATE_INLINE_SWITCH_BY_ID]:(state:any,action:any)=>{
+    const schema = state.renderTree.schema
+    const targetId = action.id
+    const {element} = findContainerById(targetId,schema)
+    if (element) {
+      //@ts-ignore
+      const isOnline = element.data.onlineXHR[action.module].isOnline
+      //@ts-ignore
+      element.data.onlineXHR[action.module].isOnline = !isOnline
+    }
+  },
+  [TYPES.RENDER_TREE_UPDATE_INLINE_URL_BY_ID]:(state:any,action:any)=>{
+    const schema = state.renderTree.schema
+    const targetId = action.id
+    const {element} = findContainerById(targetId,schema)
+    if (element) {
+      //@ts-ignore
+      element.data.onlineXHR[action.module].url = action.url
+    }
   }
 }

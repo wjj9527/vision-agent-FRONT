@@ -40,7 +40,7 @@ const Attribute:React.FC<IProps> = ({id})=>{
 
   // @ts-ignore
   return <div className="charts-attribute">
-    <XHRHandleSwitch/>
+    <XHRHandleSwitch type="list" id={currentTargetId} label={"线上数据"}/>
     <div className='inline-block-item'>
       <div className='label'>图表标题</div>
       <div className='content'>
