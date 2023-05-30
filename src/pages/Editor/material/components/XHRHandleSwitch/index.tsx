@@ -3,24 +3,23 @@ import { Switch, Select } from 'antd';
 import { StoreContext, TYPES } from '@/pages/Editor/store';
 import { findContainerById } from '@/pages/utils/findContainerById';
 import axios from 'axios';
-import JSONEditor from 'jsoneditor';
 
 interface IProps {
   id?: string,
-  label?: string,
-  type: string,
-  showEditor?:boolean
+  label?: string, //开关标签名
+  type: string,  //接口类型
+  module:string, // 接口模块名
+  onChange?:Function,
 }
-
-const XHRHandleSwitch: React.FC<IProps> = ({ id, label, type,showEditor=true }) => {
+const XHRHandleSwitch: React.FC<IProps> = ({ id, label,module, type, onChange}) => {
   const { state, dispatch } = useContext(StoreContext);
-  const editorRef = useRef(null)
   const schema = state.renderTree.schema;
   const targetId = id || state.renderTree.targetElementCheckedKey;
   const { element } = findContainerById(targetId, schema);
   // @ts-ignore
   const { onlineXHR } = element?.data || {};
-  const onlineXHRItem = onlineXHR ? onlineXHR[type] : {};
+  const onlineXHRItem = onlineXHR ? (onlineXHR[type]?onlineXHR[type]:{isOnline:false,url:null}) : {isOnline:false,url:null};
+
   const [options,setOptions] = useState([])
   const handleSwitchChange = () => {
     dispatch({ type: TYPES.RENDER_TREE_UPDATE_INLINE_SWITCH_BY_ID, id: targetId, module: type });
@@ -38,35 +37,29 @@ const XHRHandleSwitch: React.FC<IProps> = ({ id, label, type,showEditor=true }) 
   const handleSelect = (url:string)=>{
     dispatch({ type: TYPES.RENDER_TREE_UPDATE_INLINE_URL_BY_ID, id: targetId, url,module:type});
   }
-  const editorSetting = (data:object)=>{
-    if (!editorRef.current) {
-      return
-    }
-    //@ts-ignore
-    editorRef.current.innerHtml = null
-    let editor = new JSONEditor(editorRef.current,{
-      mode:'view',
-      onChange:()=>false
-    });
-    editor.set(data)
-  }
+
   useEffect(() => {
     if (onlineXHRItem.isOnline) {
       // @ts-ignore
-      const url = `/api/material/${element.value}/${type}/options`;
+      const url = `/api/material/${element.value}/${module}/options`;
       getXHROptions(url)
     }
   }, [onlineXHRItem.isOnline]);
   useEffect(() => {
-    if (onlineXHRItem.isOnline&&onlineXHRItem.url&&showEditor) {
+    if (onlineXHRItem.isOnline&&onlineXHRItem.url&&onChange) {
       axios({
         method:'get',
         url:onlineXHRItem.url
       }).then(res=>{
-        editorSetting({url:onlineXHRItem.url})
+        onChange(onlineXHRItem.isOnline,res.data)
       })
     }
-  }, [onlineXHRItem.url,showEditor,onlineXHRItem.isOnline]);
+    if (!onlineXHRItem.isOnline) {
+      if (onChange) {
+        onChange(onlineXHRItem.isOnline,null)
+      }
+    }
+  }, [onlineXHRItem.url,onlineXHRItem.isOnline]);
   return <>
     <div className='inline-block-item'>
       <div className='label'>{label}</div>
@@ -79,10 +72,6 @@ const XHRHandleSwitch: React.FC<IProps> = ({ id, label, type,showEditor=true }) 
           <div className='content'><Select className='fill-select' value={onlineXHRItem.url} options={options} placeholder="请选择接口" onChange={handleSelect}/></div>
         </div>
       )
-
-    }
-    {
-      <div ref={editorRef} className="editor"/>
     }
   </>;
 };

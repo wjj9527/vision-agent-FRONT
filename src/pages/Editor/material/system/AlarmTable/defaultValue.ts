@@ -45,7 +45,8 @@ const defaultValue:ElementType = {
     },
     onlineXHR:{
       list:{isOnline:false,url:null},
-
+      confirmed:{isOnline:false,url:null},
+      unconfirmed:{isOnline:false,url:null},
     },
     datasource:{
       confirmed:{"result":0,"message":"成功！","guid":null,"page":1,"pageSize":5,"total":62,"data":[{"id":5,"waringTime":"2023-02-10 11:36:04","waringTypeName":"数值报警","waringDeviceName":"空调机组03","gatewayPointName":"空调机组03当前温度","waringValue":"33.0","rangeValue":"26~30","isConfirm":1201,"isEliminate":1201,"floorName":"3F"},{"id":4,"waringTime":"2023-02-10 11:36:04","waringTypeName":"数值报警","waringDeviceName":"空调机组02","gatewayPointName":"空调机组02当前温度","waringValue":"33.0","rangeValue":"26~30","isConfirm":1201,"isEliminate":1201,"floorName":"2F"},{"id":6,"waringTime":"2023-02-10 11:36:04","waringTypeName":"数值报警","waringDeviceName":"空调机组04","gatewayPointName":"空调机组04当前温度","waringValue":"33.0","rangeValue":"26~30","isConfirm":1201,"isEliminate":1201,"floorName":"4F"},{"id":2,"waringTime":"2023-02-10 11:33:18","waringTypeName":"设备故障","waringDeviceName":"照明03","gatewayPointName":"照明03故障状态","waringValue":"1.0","rangeValue":"0~0","isConfirm":1201,"isEliminate":1201,"floorName":"3F"},{"id":1,"waringTime":"2023-02-10 11:30:45","waringTypeName":"设备故障","waringDeviceName":"空调机组04","gatewayPointName":"空调机组04故障状态","waringValue":"1.0","rangeValue":"0~0","isConfirm":1201,"isEliminate":1201,"floorName":"4F"}]},
