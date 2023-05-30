@@ -17,15 +17,39 @@
   }
 
   .scroll-content{
-    flex: 1;
-    overflow-y: hidden;
-    overflow-x: auto;
+    overflow: hidden;
     display: flex;
+    padding: 0 @paddingMD;
+    width: calc(100% - 128px);
+    .scroll-inner{
+      padding: 0 @paddingMD;
+    }
     .card{
-      flex: 0 0 150px;
-      width: 150px;
-      background: #69b1ff;
+      display: flex;
+      //align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      flex: 0 0 180px;
+      width: 180px;
+      background: #ffffff;
       margin: @marginXS;
+      box-shadow: 1px 1px 9px 0px #dddddd;
+      border: 1px solid #eeeeee;
+      border-radius: 8px;
+      .text{
+        font-size: 12px;
+        color: @colorTextTertiary;
+        padding-left: @paddingMD;
+        text-align: left;
+      }
+      .title{
+        color: @colorTextSecondary;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: @marginXS;
+        padding-left: @paddingMD;
+        text-align: left;
+      }
     }
   }
 }

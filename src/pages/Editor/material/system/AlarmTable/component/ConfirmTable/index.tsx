@@ -68,7 +68,7 @@ const  ConfirmTable:React.FC<IProps> =({id})=>{
   console.log(element)
   return <Table
     sticky
-    scroll={{x:true,y:200}}
+    scroll={{x:true,y:280}}
     dataSource={dataSource}
     columns={columns}/>
 }
