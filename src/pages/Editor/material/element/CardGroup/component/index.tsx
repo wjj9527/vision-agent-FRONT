@@ -18,10 +18,7 @@ interface DataType {
   datasource:object
 }
 const CardGroup:React.FC<ElementProps> = (props)=>{
-  console.log(props)
   const [groupList,setGroupList] = useState<any>([])
-  const {state,} = useContext(StoreContext)
-
   const scrollRef = useRef(null)
   const {id,label,data} = props
   const {style,datasource} = data
@@ -43,7 +40,6 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
   }
   return <ElementBody style={style} id={id} label={label}>
     <div className="card-group-list">
-
       <div className='arrow-btn left' onClick={handleScroll.bind(this,false)}>
         <i className='iconfont icon-arrowleft'/>
       </div>
@@ -62,8 +58,5 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
       </div>
     </div>
   </ElementBody>
-
-
-
 }
 export default CardGroup
