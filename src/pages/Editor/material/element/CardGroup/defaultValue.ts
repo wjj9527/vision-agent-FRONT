@@ -82,6 +82,16 @@ const defaultValue:ElementType = {
           "text": "Ammeter"
         }],
       }
+    },
+    attribute:{
+      size:'default',
+      style:'left',
+      space:'default',
+      iconSize:'default',
+      badge:true,
+    },
+    onlineXHR:{
+      list:{isOnline:false,url:'/api/material/CardGroup/list'},
     }
   },
 }

@@ -25,4 +25,40 @@
       //background: #389e0d;
     }
   }
+  .setting{
+    padding: @paddingMD 0;
+    .inline-block-item{
+      display: flex;
+      height: 32px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      .label {
+        display: flex;
+        flex: 0 0 96px;
+        align-items: center;
+        font-size: 14px;
+      }
+      .content {
+        flex: 1 1;
+        display: flex;
+        align-items: center;
+      }
+      .group {
+        flex: 1 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .offset {
+        width: calc(50% - 4px) !important;
+      }
+      .item-select {
+        display: flex;
+        flex: 1 1;
+      }
+      .fill-select {
+        width: 100%;
+      }
+    }
+  }
 }

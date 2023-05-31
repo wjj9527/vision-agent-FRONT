@@ -44,7 +44,7 @@ const defaultValue:ElementType = {
       legendLayout:'horizontal'
     },
     onlineXHR:{
-      list:{isOnline:false,url:null},
+      list:{isOnline:false,url:'/api/material/CardGroup/list'},
       confirmed:{isOnline:false,url:null},
       unconfirmed:{isOnline:false,url:null},
     },

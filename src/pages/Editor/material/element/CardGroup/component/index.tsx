@@ -1,8 +1,10 @@
-import React, { ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import React, { ReactNode,useEffect, useRef, useState } from 'react';
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
-import { StoreContext } from '@/pages/Editor/store';
+import classNames from 'classnames';
 import {Popover} from 'antd'
 import './style.less'
+import getAssets from '@/pages/Editor/material/element/CardGroup/component/getAssets';
+import axios from 'axios';
 
 interface ElementProps {
   id: string ,
@@ -15,17 +17,31 @@ interface ElementProps {
 }
 interface DataType {
   style:object,
-  datasource:object
+  datasource:object,
+  attribute:any,
+  onlineXHR:any
 }
 const CardGroup:React.FC<ElementProps> = (props)=>{
   const [groupList,setGroupList] = useState<any>([])
   const scrollRef = useRef(null)
   const {id,label,data} = props
-  const {style,datasource} = data
+  const {style,datasource,attribute,onlineXHR} = data
+  const classNamesList  = classNames('card-group-list',`size-${attribute.size}`,`style-${attribute.style}`,`space-${attribute.space}`,)
   useEffect(()=>{
     //@ts-ignore
-    setGroupList(datasource.data.deviceFault)
-  },[])
+    if (onlineXHR&&onlineXHR.list.isOnline&&onlineXHR.list.url) {
+      console.log(onlineXHR)
+      axios({
+        method:'get',
+        url:onlineXHR.list.url
+      }).then(res=>{
+        setGroupList(res.data.data.deviceFault)
+      })
+    }else{
+      //@ts-ignore
+      setGroupList(datasource.data.deviceFault)
+    }
+  },[datasource,onlineXHR])
   const handleScroll = (p:boolean)=>{
     if (scrollRef.current) {
       //@ts-ignore
@@ -39,14 +55,17 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
     </>
   }
   return <ElementBody style={style} id={id} label={label}>
-    <div className="card-group-list">
+    <div className={classNamesList} >
       <div className='arrow-btn left' onClick={handleScroll.bind(this,false)}>
         <i className='iconfont icon-arrowleft'/>
       </div>
       <div className='scroll-content' ref={scrollRef}>
         {groupList.map((item:any)=>(
           <Popover placement="top" content={<PopoverContent count={item.count} faultCount={item.faultCount}/>} trigger="hover">
-            <div className='card'>
+            <div className='card' style={{backgroundImage:`url(${getAssets(item.name)})`}}>
+              {
+                (attribute.badge&&!!item.faultCount)&&<div className='badge'/>
+              }
               <div className='text'>{item.text}</div>
               <div className='title'>{item.name}</div>
             </div>

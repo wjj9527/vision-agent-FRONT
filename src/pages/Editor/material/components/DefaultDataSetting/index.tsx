@@ -9,13 +9,14 @@ interface IProps {
   id:string,
   module?:string
 }
+let editor:any = null
 const DefaultDataSetting:React.FC<IProps> = ({id,module})=>{
   const editorRef = useRef(null)
   const {state,dispatch} = useContext(StoreContext)
   const {schema,targetElementCheckedKey} = state.renderTree
   //@ts-ignore
   let datasource = findContainerById(id||targetElementCheckedKey,schema)?.element?.data?.datasource||{}
-  let editor:any = null
+
 
   const editorSetting = ()=>{
     if (!editorRef.current) {
@@ -32,6 +33,7 @@ const DefaultDataSetting:React.FC<IProps> = ({id,module})=>{
     editor.set(data)
   }
   const handleUpdate = ()=>{
+    console.log(editor)
     if (editor) {
       const json = editor.get()
       let data
@@ -40,8 +42,9 @@ const DefaultDataSetting:React.FC<IProps> = ({id,module})=>{
         source[module] = json
         data = source
       }else{
-        data = datasource
+        data = json
       }
+      console.log(data)
       dispatch({type:TYPES.RENDER_TREE_UPDATE_ELEMENT_DATA_BY_ID,id:id||targetElementCheckedKey,data:{datasource:data}})
     }
   }
