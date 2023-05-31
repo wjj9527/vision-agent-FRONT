@@ -12,6 +12,8 @@ import PieGraph from '@/pages/Editor/material/charts/PieGraph'
 import LineGraph from '@/pages/Editor/material/charts/LineGraph'
 //报警表格
 import AlarmTable from '@/pages/Editor/material/system/AlarmTable'
+//设备卡片列表
+import DeviceCardList from '@/pages/Editor/material/system/DeviceCardGroup';
 
 interface pluginItemType {
   label:string,
@@ -34,6 +36,7 @@ const setting = {
   PieGraph:PieGraph.setting,
   LineGraph:LineGraph.setting,
   AlarmTable:AlarmTable.setting,
+  DeviceCardList:DeviceCardList.setting
 }
 
 //渲染组件集
@@ -44,6 +47,7 @@ const component = {
   PieGraph:PieGraph.component,
   LineGraph:LineGraph.component,
   AlarmTable:AlarmTable.component,
+  DeviceCardList:DeviceCardList.component
 }
 //组件默认值集合
 const defaultValue = {
@@ -53,6 +57,7 @@ const defaultValue = {
   PieGraph:PieGraph.defaultValue,
   LineGraph:LineGraph.defaultValue,
   AlarmTable:AlarmTable.defaultValue,
+  DeviceCardList:DeviceCardList.defaultValue
 }
 //组件列表
 const plugin:pluginType[] = [
@@ -119,6 +124,13 @@ const plugin:pluginType[] = [
         searchEKEY:'JBBG',
         icon:AlarmTable.defaultValue.icon,
         component:AlarmTable.component
+      },
+      {
+        label:'设备卡片列表',
+        value:'DeviceCardList',
+        searchEKEY:'SBKPLB',
+        icon:DeviceCardList.defaultValue.icon,
+        component:DeviceCardList.component
       }
     ]
   },

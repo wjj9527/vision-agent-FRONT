@@ -1,0 +1,50 @@
+.device-card-list{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 1px;
+  left: 1px;
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
+  overflow: hidden;
+  background: @colorBgLayout;
+  .search-handle{
+    background: @colorBgContainer;
+    margin-bottom: @marginMD;
+    padding: @paddingMD;
+    .search-inline-block-item{
+      display: flex;
+      align-items: center;
+      height: 32px;
+      margin-right: @marginMD;
+      .label{
+        margin: 0 @marginMD;
+        font-size: 14px;
+      }
+      .content{
+        flex: 1;
+      }
+      .btn{
+        //margin: 0 @marginXS;
+      }
+    }
+  }
+  .card-list-content{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin:0 - @marginXS;
+    width: 100%;
+    //background: #ffffff;
+    .device-card-item{
+      height: 400px;
+      width: calc(20% - @marginXS - @marginXS);
+      min-width: 300px;
+      background: #ffffff;
+      margin: @marginXS;
+    }
+  }
+}
+
+
