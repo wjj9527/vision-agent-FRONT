@@ -56,7 +56,7 @@ const MenuList: React.FC = () => {
     }
   },[params])
   const onClick: MenuProps['onClick'] = (e) => {
-    history.replace(`/preview/${e.key}`)
+    history.push(`/preview/${e.key}`)
   };
 
   return (

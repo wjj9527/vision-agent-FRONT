@@ -1,8 +1,10 @@
-import React, { ReactNode} from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ElementBody from '@/pages/Editor/material/components/ElementBody';
-import {Input,Select,Button,Radio} from 'antd'
+import {Input,Button,Radio,Pagination,Select} from 'antd'
 import './style.less'
 import Item from './Item'
+import { StoreContext } from '@/pages/Editor/store';
+import axios from 'axios';
 interface ElementProps {
   id: string ,
   children?: ReactNode[],
@@ -19,7 +21,29 @@ interface DataType {
   onlineXHR:any
 }
 const DeviceCardList:React.FC<ElementProps> = (props)=>{
-  const {id,label} = props
+  const {id,label,data} = props
+  const onlineXHR = data?.onlineXHR
+  const isOnline = onlineXHR?.list?.isOnline
+  //@ts-ignore
+  const defaultDatasource = data.datasource
+  const url = onlineXHR?.list?.url
+  const [datasource,setDatasource] = useState([])
+  const getDatasource = ()=>{
+    if (url && isOnline) {
+      axios({
+        method:'get',
+        url
+      }).then(res=>{
+        setDatasource(res.data.data)
+      })
+    }else{
+      //@ts-ignore
+      setDatasource(defaultDatasource.data)
+    }
+  }
+  useEffect(()=>{
+    getDatasource()
+  },[onlineXHR,defaultDatasource])
   return <ElementBody className={{'device-card-list':true}} id={id} label={label}>
     <div className='search-handle'>
       <div className='search-inline-block-item'>
@@ -51,7 +75,14 @@ const DeviceCardList:React.FC<ElementProps> = (props)=>{
       </div>
     </div>
     <div className='card-list-content'>
-      <Item></Item><Item></Item><Item></Item><Item></Item><Item></Item><Item></Item><Item></Item><Item></Item><Item></Item><Item></Item>
+      {
+        datasource.map((item:any)=><Item key={item.id} source={item}/>)
+      }
+    </div>
+    <div className='pagination-content'>
+      <Pagination
+        total={500}
+      />
     </div>
   </ElementBody>
 }

@@ -1,11 +1,11 @@
 .device-card-list{
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
-  top: 1px;
-  left: 1px;
-  height: calc(100% - 2px);
-  width: calc(100% - 2px);
+  top: 0px;
+  left: 0px;
+  height: calc(100%);
+  width: calc(100%);
   overflow: hidden;
   background: @colorBgLayout;
   .search-handle{
@@ -35,8 +35,8 @@
     display: flex;
     flex-wrap: wrap;
     margin:0 - @marginXS;
-    width: 100%;
-    //background: #ffffff;
+    width: calc(100% + 16px);
+    background: #f0f2f5;
     .device-card-item{
       height: 400px;
       width: calc(20% - @marginXS - @marginXS);
@@ -46,5 +46,144 @@
     }
   }
 }
+.device-card-item{
+  padding: @paddingXS;
+  display: flex;
+  flex-direction: column;
+  .device-title{
+    height: 32px;
+    line-height: 32px;
+    color: @colorText;
+    text-align: center;
+    font-size: @fontSizeHeading4;
+    font-weight: 600;
+  }
+  .status-and-address-container{
+    display: flex;
+    height: 96px;
+    .status-icon{
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .icon-img{
+        height: 80px;
+        width: auto;
+      }
+    }
+    .address-container{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .text{
+        line-height: 32px;
+        font-size: @fontSizeLG;
+        color: @colorTextTertiary;
+        .iconfont{
+          margin-right: @marginXS;
+        }
+      }
+    }
+  }
+  .scroll-block{
+    flex: 1;
+    background: @colorBgLayout;
+    margin-top: @marginXS;
+    overflow: auto;
+    border-radius: 8px;
+    padding: @paddingXS 0;
+    .status-item{
+      display: flex;
+      font-size: 12px;
+      height: 26px;
+      line-height: 26px;
+      .status-label{
+        display: flex;
+        align-items: center;
+        padding-left: @paddingMD;
+        flex: 0 0 96px;
+        .iconfont{
+          margin-right: @marginXXS;
+        }
+      }
+      .status-content{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:@colorSuccess ;
+        .status-dot{
+          height: 16px;
+          width: 16px;
+          background: #69b1ff;
+          border-radius: 11px;
+          &.on{
+            background: @colorSuccess;
+          }
+          &.error{
+            background: @colorErrorActive;
+          }
+          &.off{
+            background: @colorTextQuaternary;
+          }
+        }
+      }
+    }
+    &.hig{
+      .status-item{
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+.on-and-off-btn-group{
+  width: 84px;
+  height: 24px;
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  .action-btn{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ease all;
+    background: @colorTextQuaternary;
+    font-weight: 600;
+    &:hover{
+      background: @colorTextTertiary;
+    }
+    &.on-btn{
+      margin-right: 1px;
+    }
+    &.off-btn{
+      margin-left: 0px;
+      color: @colorError;
+    }
+  }
 
+}
+.input-btn-container{
+  width: 84px;
+  height: 24px;
+  border-radius: 12px;
+  line-height: 24px;
+  text-align: center;
+  background: @colorTextQuaternary;
+  //font-size: 16px;
+  color: #ffffff;
+  transition: .3s ease all;
+  &:hover{
+    background: @colorTextTertiary;
+  }
+}
+.pagination-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  background: #f0f2f5;
 
+}
