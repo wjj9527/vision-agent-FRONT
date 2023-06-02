@@ -3,7 +3,7 @@ import '../style.less';
 import { Select,} from 'antd';
 import { TYPES } from '@/pages/Editor/store';
 import { findContainerById } from '@/pages/utils/findContainerById';
-import { flexGrowOptions, overflowOptions } from '../params';
+import { flexOptions,} from '../params';
 import { StoreContext } from '@/pages/Editor/store';
 
 interface LayoutSettingBlockProps {
@@ -41,10 +41,10 @@ const OverflowBlock: React.FC<LayoutSettingBlockProps> = ({ id }) => {
         <div className='content'>
           <Select
             className='select'
-            value={defaultValue.flexGrow}
+            value={defaultValue.flex}
             placeholder='请选择水平滚动方式'
-            options={flexGrowOptions}
-            onChange={(e) => setSchemaData(e, 'flexGrow')} />
+            options={flexOptions}
+            onChange={(e) => setSchemaData(e, 'flex')} />
         </div>
       </div>
     </div>

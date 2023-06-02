@@ -162,10 +162,10 @@ export const overflowOptions:SelectOption[] =[
   },
 ]
 
-export const flexGrowOptions:SelectOption[] =[
+export const flexOptions:SelectOption[] =[
   {
     label:'不填充',
-    value:'0'
+    value:'0 1 auto'
   },
   {
     label:'填充',

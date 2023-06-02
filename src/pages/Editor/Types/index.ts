@@ -18,7 +18,7 @@ export type StyleType = {
   heightPrefix: 'px' | 'em' | '%' | string;
   overflowX?:'auto'|'hidden'|'scroll'|string;
   overflowY?:'auto'|'hidden'|'scroll'|string;
-  flexGrow?:'0'|'1'
+  flex?:'0 1 auto'|'1'
 };
 //外框参数类型
 export type ElementType = {

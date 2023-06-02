@@ -26,7 +26,7 @@ const defaultValue:ElementType = {
       heightPrefix: 'px',
       overflowX:'auto',
       overflowY:'auto',
-      flexGrow:'0',
+      flex:'0 1 auto',
     },
   },
 }
