@@ -3,6 +3,7 @@ import ComponentItems from './ComponentItems'
 import Outline from './Outline'
 import SchemaPlugin from './Schema';
 import MenuManagement from './MenuManagement';
+import Group from './Group'
 import { useContext,  } from 'react';
 import { StoreContext, } from '@/pages/Editor/store';
 
@@ -21,6 +22,9 @@ export default ()=>{
       }
       {
         state?.plugin?.pluginCurrentTarget==='json'&&<SchemaPlugin/>
+      }
+      {
+        state?.plugin?.pluginCurrentTarget==='group'&&<Group/>
       }
     </div>
   </div>

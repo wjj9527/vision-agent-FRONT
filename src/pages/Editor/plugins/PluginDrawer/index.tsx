@@ -26,6 +26,10 @@ export default function():(false | JSX.Element|any){
       label:'JSON',
       component:null,
     },
+    group:{
+      label:'组合模板',
+      component:null,
+    },
   }
   const currentTargetData = renderModules[pluginCurrentTarget]
   const handleClose = ()=>{

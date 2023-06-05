@@ -147,5 +147,8 @@ export default {
       //@ts-ignore
       element.data.onlineXHR[action.module].url = action.url
     }
+  },
+  [TYPES.RENDER_TREE_UPDATE_IS_CAN_HANDLE]:(state:any,action:any)=>{
+    state.renderTree.isCanHandle = action.value
   }
 }

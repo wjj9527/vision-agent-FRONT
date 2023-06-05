@@ -11,7 +11,7 @@ const StatusBlock:React.FC<IProps> = ({source})=>{
   return <div className='scroll-block'>
     {
       source.map((item:any)=>(
-        <div className='status-item'>
+        <div className='status-item' key={item.id}>
           <div className='status-label'>
             <i className='iconfont icon-gongyezujian-yibiaopan'/>{item.name}
           </div>

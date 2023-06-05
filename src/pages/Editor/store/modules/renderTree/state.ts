@@ -28,4 +28,5 @@ export default {
     children:[]
   },
   targetElementCheckedKey:'0',
+  isCanHandle:true,
 }

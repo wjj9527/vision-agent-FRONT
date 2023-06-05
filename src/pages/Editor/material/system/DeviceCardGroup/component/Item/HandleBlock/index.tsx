@@ -9,7 +9,7 @@ interface IProps{
 const HandleBlock:React.FC<IProps> = ({source})=>{
   return <div className="scroll-block hig">
     {
-      source.map((item:any)=>(<div className='status-item'>
+      source.map((item:any)=>(<div className='status-item' key={item.id}>
         <div className='status-label'><i className='iconfont icon-canshushezhi'/>{item.name}</div>
         <div className='status-content'>
           {item.typeName==="control"&&<OnAndOffBtn/>}

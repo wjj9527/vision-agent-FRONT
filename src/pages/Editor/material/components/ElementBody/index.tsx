@@ -27,11 +27,16 @@ const ElementBody: React.FC<ElementBodyProps> = ({ style, className, label, chil
   const [editStatus,setEditStatus] = useState(false)
   const [labelText,setLabelText] = useState(label)
   const inputRef = useRef(null)
+  const {isCanHandle} = state.renderTree
   let classNamesList = classNames('badge-body', className, {
     'active': state.renderTree.targetElementCheckedKey === id,
   });
   const handleTargetElementSetting = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
+    // console.log(state.renderTree)
+    if (!isCanHandle) {
+      return
+    }
     dispatch({ type: TYPES.RENDER_TREE_SET_TARGET_ELEMENT_CHECKED_KEY, value: id });
   };
   const handleDeleteElement = () => {

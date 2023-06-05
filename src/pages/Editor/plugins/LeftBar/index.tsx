@@ -1,9 +1,9 @@
+import React, { useContext } from 'react';
 import { Tooltip } from 'antd';
 import './style.less';
 import {StoreContext,TYPES} from '../../store';
-import { useContext } from 'react';
-export default ()=>{
-  //@ts-ignore
+
+const LeftBar:React.FC = ()=>{
   const {dispatch,state} = useContext(StoreContext)
   const {pluginCurrentTarget} = state.plugin
   const items = [
@@ -20,11 +20,16 @@ export default ()=>{
     {
       value:'page',
       label:'页面管理',
-      icon:'icon-yemiankuangjia_o'
+      icon:'icon-gongnengleixing'
+    },
+    {
+      value:'group',
+      label:'组合模板',
+      icon:'icon-mobanguanli'
     },
     {
       value:'json',
-      label:'JSON',
+      label:'schema',
       icon:'icon-10json'
     },
   ]
@@ -45,3 +50,4 @@ export default ()=>{
     </div>
   </div>
 }
+export default LeftBar

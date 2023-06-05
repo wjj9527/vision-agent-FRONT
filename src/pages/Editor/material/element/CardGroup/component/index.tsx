@@ -3,7 +3,7 @@ import ElementBody from '@/pages/Editor/material/components/ElementBody';
 import classNames from 'classnames';
 import {Popover} from 'antd'
 import './style.less'
-import getAssets from '@/pages/Editor/material/element/CardGroup/component/getAssets';
+import getAssets from './getAssets';
 import axios from 'axios';
 
 interface ElementProps {
@@ -61,7 +61,7 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
       </div>
       <div className='scroll-content' ref={scrollRef}>
         {groupList.map((item:any)=>(
-          <Popover placement="top" content={<PopoverContent count={item.count} faultCount={item.faultCount}/>} trigger="hover">
+          <Popover placement="top" key={item.id} content={<PopoverContent count={item.count} faultCount={item.faultCount}/>} trigger="hover">
             <div className='card' style={{backgroundImage:`url(${getAssets(item.name)})`}}>
               {
                 (attribute.badge&&!!item.faultCount)&&<div className='badge'/>

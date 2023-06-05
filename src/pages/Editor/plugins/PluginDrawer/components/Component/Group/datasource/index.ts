@@ -1,0 +1,1 @@
+export {deviceStatisticsPage} from './deviceStatisticsPage'

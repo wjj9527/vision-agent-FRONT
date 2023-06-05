@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './style.less'
 import MenuList from '@/pages/Preview/components/Menu';
-import {Store} from '@/pages/Editor/store';
+import { Store, StoreContext, TYPES } from '@/pages/Editor/store';
 import Page from '@/pages/Editor/material/Page'
 const Preview:React.FC =()=>{
+  const {dispatch} = useContext(StoreContext)
+  useEffect(()=>{
+    dispatch({type:TYPES.RENDER_TREE_UPDATE_IS_CAN_HANDLE,value:false})
+  },[])
   return <div className="preview-container-body">
     <div className='preview-header'></div>
     <div className='preview-content'>

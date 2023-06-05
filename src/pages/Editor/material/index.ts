@@ -14,6 +14,8 @@ import LineGraph from '@/pages/Editor/material/charts/LineGraph'
 import AlarmTable from '@/pages/Editor/material/system/AlarmTable'
 //设备卡片列表
 import DeviceCardList from '@/pages/Editor/material/system/DeviceCardGroup';
+//警报卡片组
+import AlarmCardGroup from '@/pages/Editor/material/system/AlarmCardGroup'
 
 interface pluginItemType {
   label:string,
@@ -36,7 +38,8 @@ const setting = {
   PieGraph:PieGraph.setting,
   LineGraph:LineGraph.setting,
   AlarmTable:AlarmTable.setting,
-  DeviceCardList:DeviceCardList.setting
+  DeviceCardList:DeviceCardList.setting,
+  AlarmCardGroup:AlarmCardGroup.setting
 }
 
 //渲染组件集
@@ -47,7 +50,8 @@ const component = {
   PieGraph:PieGraph.component,
   LineGraph:LineGraph.component,
   AlarmTable:AlarmTable.component,
-  DeviceCardList:DeviceCardList.component
+  DeviceCardList:DeviceCardList.component,
+  AlarmCardGroup:AlarmCardGroup.component
 }
 //组件默认值集合
 const defaultValue = {
@@ -57,7 +61,8 @@ const defaultValue = {
   PieGraph:PieGraph.defaultValue,
   LineGraph:LineGraph.defaultValue,
   AlarmTable:AlarmTable.defaultValue,
-  DeviceCardList:DeviceCardList.defaultValue
+  DeviceCardList:DeviceCardList.defaultValue,
+  AlarmCardGroup:AlarmCardGroup.defaultValue
 }
 //组件列表
 const plugin:pluginType[] = [
@@ -131,6 +136,13 @@ const plugin:pluginType[] = [
         searchEKEY:'SBKPLB',
         icon:DeviceCardList.defaultValue.icon,
         component:DeviceCardList.component
+      },
+      {
+        label:'警报卡片组',
+        value:'AlarmCardGroup',
+        searchEKEY:'JBKPZ',
+        icon:AlarmCardGroup.defaultValue.icon,
+        component:AlarmCardGroup.component
       }
     ]
   },
