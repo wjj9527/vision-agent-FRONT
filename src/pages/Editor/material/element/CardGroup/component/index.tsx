@@ -5,6 +5,7 @@ import {Popover} from 'antd'
 import './style.less'
 import getAssets from './getAssets';
 import axios from 'axios';
+import { createUUID } from '@/pages/utils';
 
 interface ElementProps {
   id: string ,
@@ -30,7 +31,7 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
   useEffect(()=>{
     //@ts-ignore
     if (onlineXHR&&onlineXHR.list.isOnline&&onlineXHR.list.url) {
-      console.log(onlineXHR)
+      // console.log(onlineXHR)
       axios({
         method:'get',
         url:onlineXHR.list.url
@@ -61,8 +62,8 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
       </div>
       <div className='scroll-content' ref={scrollRef}>
         {groupList.map((item:any)=>(
-          <Popover placement="top" key={item.id} content={<PopoverContent count={item.count} faultCount={item.faultCount}/>} trigger="hover">
-            <div className='card' style={{backgroundImage:`url(${getAssets(item.name)})`}} key={item.id}>
+          <Popover placement="top" key={createUUID()} content={<PopoverContent count={item.count} faultCount={item.faultCount} />} trigger="hover">
+            <div className='card' style={{backgroundImage:`url(${getAssets(item.name)})`}} key={createUUID()} >
               {
                 (attribute.badge&&!!item.faultCount)&&<div className='badge'/>
               }

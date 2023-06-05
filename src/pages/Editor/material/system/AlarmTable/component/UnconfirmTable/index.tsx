@@ -80,6 +80,7 @@ const  UnconfirmedTable:React.FC<IProps> =({id})=>{
   return <>
     <Table
       sticky
+      rowKey={record => record.id}
       scroll={{x:true,y:280}}
       dataSource={dataSource}
       columns={columns}/>
