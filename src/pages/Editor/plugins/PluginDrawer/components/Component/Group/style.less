@@ -1,0 +1,46 @@
+.group-template-plugin{
+  background: @colorBgContainer;
+  height: 100%;
+  padding: @paddingXS;
+  .group-content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    .group-item{
+      border-bottom: 1px solid #dddddd;
+      border-right: 1px solid #dddddd;
+      height: 120px;
+      flex: 0 0 33.333%;
+      cursor: pointer;
+      &:hover{
+        box-shadow: 1px 1px 10px 1px #dddddd;
+        .icon-content{
+          .iconfont{
+            color: @colorPrimaryHover;
+          }
+        }
+
+        .text{
+          color: @colorPrimaryHover;
+        }
+      }
+      .icon-content{
+        height: 88px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .iconfont{
+          font-size: 44px;
+          color: @colorTextTertiary;
+        }
+      }
+      .text{
+        line-height: 32px;
+        font-size: @fontSizeSM;
+        text-align: center;
+      }
+    }
+  }
+}

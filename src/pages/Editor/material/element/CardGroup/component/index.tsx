@@ -62,7 +62,7 @@ const CardGroup:React.FC<ElementProps> = (props)=>{
       <div className='scroll-content' ref={scrollRef}>
         {groupList.map((item:any)=>(
           <Popover placement="top" key={item.id} content={<PopoverContent count={item.count} faultCount={item.faultCount}/>} trigger="hover">
-            <div className='card' style={{backgroundImage:`url(${getAssets(item.name)})`}}>
+            <div className='card' style={{backgroundImage:`url(${getAssets(item.name)})`}} key={item.id}>
               {
                 (attribute.badge&&!!item.faultCount)&&<div className='badge'/>
               }
