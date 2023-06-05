@@ -1,5 +1,5 @@
 export default {
-  pluginCurrentTarget:'page',
+  pluginCurrentTarget:'outline',
   pluginDrawerVisible:true,
   pluginDrawerFixed:false,
   pluginSettingFold:true,
