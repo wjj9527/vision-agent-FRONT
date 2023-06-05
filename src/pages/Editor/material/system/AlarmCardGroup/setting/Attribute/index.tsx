@@ -33,10 +33,6 @@ const Attribute:React.FC<IProps> = ({id})=>{
       <div className='label'>卡片间隔</div>
       <div className='content'><Select className="fill-select" onChange={e=>setSchemaData(e,'space')} placeholder="请选择卡片间隔" options={spaceOptions} value={attribute.space} /></div>
     </div>
-    <div className='inline-block-item'>
-      <div className='label'>显示徽记</div>
-      <div className='content'><Switch checked={attribute.badge} onChange={e=>setSchemaData(e,'badge')}/></div>
-    </div>
   </div>
 }
 export default Attribute

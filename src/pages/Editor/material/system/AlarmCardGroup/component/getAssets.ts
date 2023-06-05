@@ -1,17 +1,11 @@
 const assets = {
-  "人感":require('./images/人感.svg'),
-  "排风机":require('./images/排风机.svg'),
-  "气表":require('./images/气表.svg'),
-  "水表":require('./images/水表.svg'),
-  "照明":require('./images/照明.svg'),
-  "电表":require('./images/电表.svg'),
-  "空调机组":require('./images/空调机组.svg'),
-  "给排水":require('./images/给排水.svg'),
-  "能量表":require('./images/能量表.svg'),
-  "通用":require('./images/通用.svg'),
-  "门禁":require('./images/门禁.svg'),
+  "报警转化率":require('./images/报警转化率.png'),
+  "报警总数":require('./images/报警总数.png'),
+  "已消除报警":require('./images/已消除报警.png'),
+  "未确认报警":require('./images/未确认报警数.png'),
+  "已确认报警":require('./images/已确认报警数.png'),
 }
 
 export default (label:keyof typeof assets)=>{
-  return assets[label]||assets['通用']
+  return assets[label]
 }

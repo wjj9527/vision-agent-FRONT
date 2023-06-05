@@ -6,64 +6,7 @@ const defaultValue:ElementType = {
   id:'',
   icon:'icon-qiapianshuliang',
   data: {
-    datasource:{
-      "result": 0,
-      "message": "成功！",
-      "guid": null,
-      "data": {
-        "deviceFault": [{
-          "count": 9,
-          "name": "空调机组",
-          "deviceTypeId": 2,
-          "faultCount": 1,
-          "img": "airConditioner",
-          "text": "Air conditioner"
-        }, {
-          "count": 6,
-          "name": "照明",
-          "deviceTypeId": 3,
-          "faultCount": 1,
-          "img": "interlligentlight",
-          "text": "Interlligentlight"
-        }, {
-          "count": 3,
-          "name": "水表",
-          "deviceTypeId": 4,
-          "faultCount": 0,
-          "img": "waterMeter",
-          "text": "Water Meter"
-
-        }, {
-          "count": 7,
-          "name": "风机",
-          "deviceTypeId": 5,
-          "faultCount": 1,
-          "img": "draughtFan",
-          "text": "Draught Fan"
-        }, {
-          "count": 5,
-          "name": "水泵",
-          "deviceTypeId": 6,
-          "faultCount": 1,
-          "img": "pump",
-          "text": "Pump"
-        }, {
-          "count": 4,
-          "name": "电梯",
-          "deviceTypeId": 7,
-          "faultCount": 1,
-          "img": "elevater",
-          "text": "Elevater"
-        }, {
-          "count": 3,
-          "name": "电表",
-          "deviceTypeId": 10,
-          "faultCount": 0,
-          "img": "ammeter",
-          "text": "Ammeter"
-        }],
-      }
-    },
+    datasource:{"result":0,"message":"成功！","guid":null,"data":{"waringCount":{"value":"322","name":"报警总数"},"eliminatedCount":{"value":"318","name":"已消除报警"},"conversionRate":{"value":"98.7","name":"报警转化率"},"unconfirmedCount":{"value":"261","name":"未确认报警"},"confirmedCount":{"value":"61","name":"已确认报警"},"maxFloor":{"value":"B1F","name":"报警高发楼层"},"maxDevice":{"value":"空调机组","name":"报警高发设备类型"}}},
     attribute:{
       size:'default',
       style:'left',
@@ -72,7 +15,7 @@ const defaultValue:ElementType = {
       badge:true,
     },
     onlineXHR:{
-      list:{isOnline:false,url:'/api/material/CardGroup/list'},
+      list:{isOnline:false,url:'/api/material/alarmCardGroup/list'},
     }
   },
 }
